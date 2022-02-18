@@ -3,10 +3,6 @@ import ReactModal from "react-modal";
 
 import { useWalletDataContext } from "../state/WalletContext";
 
-import ContentSection from "../components/common/ContentSection/ContentSection.js";
-import InnerSection from "../components/common/InnerSection/InnerSection.js";
-import BrandFace from "../components/common/BrandFace/BrandFace.js";
-import InitializerNFT from "../components/common/InitializerNFT/InitializerNFT.js";
 import WalletConnector from "../components/common/WalletConnector/WalletConnector.js";
 import Footer from "../components/common/Footer/Footer.js";
 
@@ -17,17 +13,6 @@ import MyInitializersSection from "../components/modules/Home/MyInitializersSect
 export default function Home(props) {
 
   const {walletData, setWalletData} = useWalletDataContext();
-
-  React.useEffect(() => {
-    console.log(walletData);
-    console.log(setWalletData);
-    alert(walletData);
-
-    setTimeout(() => {
-      console.log(walletData);
-      alert(walletData);
-    }, 5000);
-  }, []);
 
   // Modal 
   const [modalContent, setModalContent] = React.useState("");
@@ -80,11 +65,11 @@ export default function Home(props) {
           ) : (
             <div
               style={{ backgroundColor: "white", width: "100%", height: "2vh" }}
-            >thrtdujftyik</div>
+            ></div>
           )}
         </>
       ) : (
-        "NONENOEN"
+        ""
       )}
       <Footer />
     </div>
