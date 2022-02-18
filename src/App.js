@@ -6,6 +6,7 @@ import { WalletDataProvider } from "./state/WalletContext.js";
 import "./styles.css";
 
 import HomePage from "./pages/Home.js";
+import DemoPage from "./pages/Demo.js";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Router basename={process.env.PUBLIC_URL}>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/demo" element={<DemoPage />} />
           </Routes>
         </Router>
       </div>

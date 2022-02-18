@@ -1,7 +1,12 @@
 import React from "react";
 import constate from "constate"; // State Context Object Creator
 
-const DEFAULT_WALLET = {};
+const DEFAULT_WALLET = {
+    web3: {},
+    tokens: [],
+    accounts: [],
+    collectibleContract: {}
+};
 
 // Built from this article: https://www.sitepoint.com/replace-redux-react-hooks-context-api/
 
@@ -9,11 +14,17 @@ const DEFAULT_WALLET = {};
 function useWalletData() {
   const [walletData, setWalletData] = React.useState(DEFAULT_WALLET);
 
+  const updateWalletData = (data) => {
+    setWalletData(data);
+  }
+
+  /*
   React.useEffect(() => {
     setWalletData({});
   }, []);
+  */
 
-  return [ walletData, setWalletData ];
+  return { walletData, setWalletData, updateWalletData };
 }
 
 // Step 2: Declare your context state object to share the state with other components

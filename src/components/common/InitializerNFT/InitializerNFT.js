@@ -26,54 +26,29 @@ export default function InitializerNFT({
   };
 
   React.useEffect(async () => {
-    //let canvas = document.getElementById(tokenId);
-    //let ctx = canvas.getContext("2d");
-    //generateFaceCanvas(ctx, tokenId);
-    //alert(tokenId);
     // Get the metadata for this token
+    try {
+      const tokenURI = await contract.methods.tokenURI(tokenId).call();
 
-    const tokenURI = await contract.methods.tokenURI(tokenId).call();
+      // Get metadata JSON
+      let data = await fetchIpfsData(tokenURI);
+      data = await data.json();
+      console.log(data);
+      setMetadata(data);
+      const imageUri = data.image;
 
-    // Get metadata JSON
-    let data = await fetchIpfsData(tokenURI);
-    data = await data.json();
-    console.log(data);
-    setMetadata(data);
-    const imageUri = data.image;
-
-    // Get image
-    data = await fetchIpfsData(imageUri);
-    data = await data.blob();
-    setImage(URL.createObjectURL(data));
+      // Get image
+      data = await fetchIpfsData(imageUri);
+      data = await data.blob();
+      setImage(URL.createObjectURL(data));
+    } catch(e) {
+      console.error("Could not fetch Initializer image", e);
+    }
   }, []);
 
   return (
     <div className="NFTContainer">
       <img className="NFT" id={tokenId} src={image} />
-      {/*}
-      <div
-        style={{
-          display: "inline-block",
-          width: "15vw",
-          height: "15vw",
-          backgroundColor: "black",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <BrandFace
-          faceColor="white"
-          style={{
-            width: "3.5rem",
-            height: "2.25rem",
-            margin: "none",
-            padding: "1.5rem",
-          }}
-        />
-      </div>
-      {*/}
-      {/*}<canvas className="FaceNFT" id={tokenId} width="27" height="27"></canvas>{*/}
       <div className="NFTDescription">
         <span style={{ fontSize: ".8rem", marginBottom: ".5rem" }}>
           Initializer #{tokenId}
@@ -98,31 +73,6 @@ export default function InitializerNFT({
             );
           })}
         </div>
-        {/*}
-        <br />
-        <button
-          style={{
-            fontSize: "1rem",
-            width: "100%",
-            padding: "1%",
-            margin: ".25rem",
-          }}
-          className="ButtonBlack"
-        >
-          Sell
-        </button>
-        <button
-          style={{
-            fontSize: "1rem",
-            width: "100%",
-            padding: "1%",
-            margin: ".25rem",
-          }}
-          className="ButtonBlack"
-        >
-          Transfer
-        </button>
-        {*/}
       </div>
     </div>
   );
