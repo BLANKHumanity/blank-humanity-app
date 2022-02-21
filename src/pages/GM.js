@@ -9,7 +9,6 @@ export default function GM(props) {
   return (
     <div>      
       <GMSection />
-      <Footer />
     </div>
   );
 }

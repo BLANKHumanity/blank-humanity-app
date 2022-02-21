@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 
 import { WalletDataProvider } from "./state/WalletContext.js";
 
@@ -16,7 +16,7 @@ export default function App() {
         <Router basename={process.env.PUBLIC_URL}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/GM" element={<GMPage />} />
+            <Route path="/GM/:initializer" element={<GMPage />} />
             <Route path="/demo" element={<DemoPage />} />
           </Routes>
         </Router>
