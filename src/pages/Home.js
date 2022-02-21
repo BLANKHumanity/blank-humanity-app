@@ -59,6 +59,7 @@ export default function Home(props) {
       <HeroSection />
       {walletData?.accounts?.length ? (
         <>
+          <MintInitializerSection />
           {walletData.tokens?.length > 0 ? (
             <MyInitializersSection />
           ) : (
