@@ -6,6 +6,7 @@ import { WalletDataProvider } from "./state/WalletContext.js";
 import "./styles.css";
 
 import HomePage from "./pages/Home.js";
+import GMPage from "./pages/GM.js";
 import DemoPage from "./pages/Demo.js";
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
         <Router basename={process.env.PUBLIC_URL}>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/GM/:tokenId" element={<GMPage />} />
             <Route path="/demo" element={<DemoPage />} />
           </Routes>
         </Router>
