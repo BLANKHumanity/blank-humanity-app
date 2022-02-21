@@ -16,7 +16,7 @@ export default function App() {
         <Router basename={process.env.PUBLIC_URL}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/GM/:initializer" element={<GMPage />} />
+            <Route path="/GM/:tokenId" element={<GMPage />} />
             <Route path="/demo" element={<DemoPage />} />
           </Routes>
         </Router>
