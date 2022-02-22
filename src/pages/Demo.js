@@ -4,6 +4,10 @@ import InnerSection from "../components/common/InnerSection/InnerSection";
 
 export default function Demo(props) {
 
+  React.useEffect(() => {
+    window.location = "https://demo.blankhumanity.com/";
+  }, []);
+
   return (
     <div>
       <BrandFace />
