@@ -57,6 +57,13 @@ export default function Footer(props) {
         >
           <i class="fab fa-twitter"></i>
         </a>
+        <a
+          href="https://opensea.io/collection/blank-humanity-initializers"
+          target="_blank"
+          style={{ color: "white", textDecoration: "none" }}
+        >
+          <img src="/OpenSeaLogo.png" style={{width:"2rem"}}/>
+        </a>
         {/*}
         <a
           href="https://reddit.com/r/blankhumanity"
