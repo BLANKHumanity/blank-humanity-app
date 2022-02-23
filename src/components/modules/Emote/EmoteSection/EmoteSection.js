@@ -14,6 +14,10 @@ export default function Emote(props) {
   const [displayEmote, setDisplayEmote] = React.useState({displayEmote: "GM"});
   const [initializer, setInitializer] = React.useState({initializer: tokenId});
   
+  React.useEffect(() => {
+    setInitializer({initializer:tokenId})
+  }, [tokenId]);
+
   function generateCaption(emote) {
     let caption = "";
     switch(emote) {
