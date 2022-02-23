@@ -92,10 +92,10 @@ function useWalletData() {
       });
     } catch (error) {
       // Catch any errors for any of the above operations.
-      alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`
+      console.error(
+        `Failed to load web3, accounts, or contract. Check console for details.`,
+        error
       );
-      console.error(error);
     }
   };
 
