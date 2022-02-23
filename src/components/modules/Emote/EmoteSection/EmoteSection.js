@@ -19,7 +19,7 @@ export default function Emote(props) {
       case "GL": caption = 'wishes you luck'; break;
       case "WOW": caption = 'is amazed'; break;
       case "TY": caption = 'is grateful'; break;
-      case "heart": caption = 'sends love'; break;
+      case "heart": caption = 'loves this'; break;
       case "WAGMI": caption = 'insists We\'re All Gonna Make It'; break;
       default: caption = "says " + emote
     }
