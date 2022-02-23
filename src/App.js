@@ -7,6 +7,7 @@ import "./styles.css";
 
 import HomePage from "./pages/Home.js";
 import GMPage from "./pages/GM.js";
+import EmotePage from "./pages/Emote.js";
 import DemoPage from "./pages/Demo.js";
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/GM/:tokenId" element={<GMPage />} />
+            <Route path="/emote/:tokenId" element={<EmotePage />} />
             <Route path="/demo" element={<DemoPage />} />
           </Routes>
         </Router>
