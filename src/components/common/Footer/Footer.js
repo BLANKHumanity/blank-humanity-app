@@ -62,7 +62,7 @@ export default function Footer(props) {
           target="_blank"
           style={{ color: "white", textDecoration: "none" }}
         >
-          <img src="/OpenSeaLogo.png" style={{width:"20px"}}/>
+          <img src="/OpenSeaLogo.png" style={{width:"2rem"}}/>
         </a>
         {/*}
         <a
