@@ -14,6 +14,7 @@ export default function Emote(props) {
   const [displayEmote, setDisplayEmote] = React.useState({displayEmote: "GM"});
   const [initializer, setInitializer] = React.useState({initializer: tokenId});
   
+  //[update initializer when url is updated]
   React.useEffect(() => {
     setInitializer({initializer:tokenId})
   }, [tokenId]);
