@@ -62,7 +62,7 @@ export default function Footer(props) {
           target="_blank"
           style={{ color: "white", textDecoration: "none" }}
         >
-          <i class="fab fa-opensea"><img src="/OpenSeaLogo.png" style={{width:"20px"}}/></i>
+          <img src="/OpenSeaLogo.png" style={{width:"20px"}}/>
         </a>
         {/*}
         <a
