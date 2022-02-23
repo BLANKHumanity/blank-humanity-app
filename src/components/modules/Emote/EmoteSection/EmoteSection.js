@@ -57,7 +57,7 @@ export default function Emote(props) {
               <img src={initializerMetadata[tokenId][0].imageData} align="top" width="75%" alt={caption}/>
               <img src={displayEmote.displayEmote + '.png'} align="top" width="25%"/>
             </div>
-            <div style={{fontStyle: "italic",fontSize: "2rem", paddingTop: "1rem"}}>Initializer {initializer.initializer} {caption}</div>
+            <div style={{fontStyle: "italic",fontSize: "2rem", paddingTop: "1rem"}}>Initializer #{initializer.initializer} {caption}</div>
             </div>
           </InnerSection>
         </ContentSection>
