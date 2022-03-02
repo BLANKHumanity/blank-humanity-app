@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useRouter } from 'next/router'
 import ContentSection from "../../../common/ContentSection/ContentSection";
 import InnerSection from "../../../common/InnerSection/InnerSection";
 import Footer from "../../../common/Footer/Footer";
@@ -8,7 +8,9 @@ import initializerMetadata from "../../../../utils/initializers-metadata-lookup.
 
 
 export default function Emote(props) {
-  let { tokenId } = useParams();
+  const router = useRouter()
+  let { tokenId } = router.query
+  
   if( !parseInt(tokenId) ) { tokenId = 0; }  
   
   const [displayEmote, setDisplayEmote] = React.useState({displayEmote: "GM"});
@@ -60,7 +62,7 @@ export default function Emote(props) {
           <div style={{border:"1px solid black", padding:"1rem", width:"75%", maxWidth:"500px", margin: "0 auto"}}>
             <div>
               <img src={initializerMetadata[tokenId][0].imageData} align="top" width="75%" alt={caption}/>
-              <img src={displayEmote.displayEmote + '.png'} align="top" width="25%"/>
+              <img src={'/'+displayEmote.displayEmote + '.png'} align="top" width="25%"/>
             </div>
             <div style={{fontStyle: "italic",fontSize: "2rem", paddingTop: "1rem"}}>Initializer #{initializer.initializer} {caption}</div>
             </div>
