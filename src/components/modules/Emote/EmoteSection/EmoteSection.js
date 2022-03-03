@@ -38,14 +38,8 @@ export default function Emote(props) {
   
   let caption = generateCaption(displayEmote.displayEmote);
   let emotes = [
-    {label:"GL", value:'GL'}, 
     {label:"GM", value:'GM'}, 
-    {label:"GN", value:'GN'}, 
-    {label:"HI", value:'HI'},
-    {label:"TY", value:'TY'}, 
-    {label:"WOW", value:'WOW'}, 
-    {label:"HEART", value:'heart'}, 
-    {label:"WAGMI", value:'WAGMI'}
+    {label:"GN", value:'GN'}
   ];
 
   return (
