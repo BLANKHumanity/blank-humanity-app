@@ -14,7 +14,7 @@ export default function Emote(props) {
   const [displayEmote, setDisplayEmote] = React.useState({displayEmote: "GM"});
   const [initializer, setInitializer] = React.useState({initializer: tokenId});
   let sendsLove = ['0','313']
-  let lovesThis = ['0']
+  let lovesThis = ['0', '355']
 
   //[update initializer when url is updated]
   React.useEffect(() => {
