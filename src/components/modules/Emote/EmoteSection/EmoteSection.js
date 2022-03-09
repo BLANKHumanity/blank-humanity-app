@@ -15,7 +15,7 @@ export default function Emote(props) {
   const [initializer, setInitializer] = React.useState({initializer: tokenId});
   let sendsLove = ['0','313']
   let lovesThis = ['0', '355', '626']
-  let cupWinners = ['248', '46', '757', '868', '475', '407', '556']
+  let cupWinners = ['248', '46', '757', '868', '475', '407', '556', '184', '758', '184', '758']
 
   //[update initializer when url is updated]
   React.useEffect(() => {
