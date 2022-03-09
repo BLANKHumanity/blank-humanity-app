@@ -15,13 +15,15 @@ export default function Emote(props) {
   const [initializer, setInitializer] = React.useState({initializer: tokenId});
   let sendsLove = ['0','313']
   let lovesThis = ['0', '355', '626']
+  let cupWinners = ['248', '46', '757', '868', '475', '407', '556']
 
   //[update initializer when url is updated]
   React.useEffect(() => {
     setInitializer({initializer:tokenId})
     setDisplayEmote({displayEmote: "GM"})
   }, [tokenId]);
-
+  let osLink = "https://opensea.io/assets/0x881d9c2f229323aad28a9c9045111e30e1f1eb25/" + tokenId
+  
   function generateCaption(emote) {
     let caption = "";
     switch(emote) {
@@ -30,6 +32,7 @@ export default function Emote(props) {
       case "TY": caption = 'is grateful'; break;
       case "lovesThis": caption = 'loves this'; break;
       case "sendLove": caption = 'sends love'; break;
+      case "CUP": caption = 'is a winner'; break;
       case "WAGMI": caption = 'insists We\'re All Gonna Make It'; break;
       default: caption = "says " + emote
     }
@@ -62,6 +65,9 @@ export default function Emote(props) {
   if(lovesThis.indexOf(tokenId) > -1) {
     emotes.push({label: "Loves this", value:'lovesThis'})
   }
+  if(cupWinners.indexOf(tokenId) > -1) {
+    emotes.push({label: "Is a winner", value:'CUP'})
+  }
   return (
     <div className="Emote">
         <ContentSection width="75%" style={{minHeight:"80vh", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
@@ -79,6 +85,7 @@ export default function Emote(props) {
             <div style={{fontStyle: "italic",fontSize: "2rem", paddingTop: "1rem"}}>Initializer #{initializer.initializer} {caption}</div>
             </div>
           </InnerSection>
+          <div>Check out Initializer #{tokenId} <a href={osLink} >on OpenSea</a></div>
         </ContentSection>
         <Footer />
     </div>
