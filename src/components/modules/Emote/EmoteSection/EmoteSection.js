@@ -16,7 +16,7 @@ export default function Emote(props) {
   let sendsLove = ['0','313']
   let lovesThis = ['0', '355', '626']
   let cupWinners = ['248', '46', '757', '868', '475', '407', '556', '184', '758', '184', '758', '421']
-  let buyMe = ['635','731','295','795', '677']
+  let buyMe = ['731','295','795', '677', '351','306', '387', '162', '466', '566']
 
   //[update initializer when url is updated]
   React.useEffect(() => {
