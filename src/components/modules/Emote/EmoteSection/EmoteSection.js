@@ -16,6 +16,7 @@ export default function Emote(props) {
   let sendsLove = ['0','313']
   let lovesThis = ['0', '355', '626']
   let cupWinners = ['248', '46', '757', '868', '475', '407', '556', '184', '758', '184', '758', '421']
+  let buyMe = ['635','731','295','795', '677']
 
   //[update initializer when url is updated]
   React.useEffect(() => {
@@ -33,6 +34,7 @@ export default function Emote(props) {
       case "lovesThis": caption = 'loves this'; break;
       case "sendLove": caption = 'sends love'; break;
       case "CUP": caption = 'is a winner'; break;
+      case "MONEY": caption = 'says BUY ME'; break;
       case "WAGMI": caption = 'insists We\'re All Gonna Make It'; break;
       default: caption = "says " + emote
     }
@@ -67,6 +69,9 @@ export default function Emote(props) {
   }
   if(cupWinners.indexOf(tokenId) > -1) {
     emotes.push({label: "Is a winner", value:'CUP'})
+  }
+  if(buyMe.indexOf(tokenId) > -1) {
+    emotes.push({label: "BUY ME", value:'MONEY'})
   }
   return (
     <div className="Emote">
