@@ -1,4 +1,4 @@
-import {React, useRef, useEffect} from "react";
+import { React } from "react";
 import { useRouter } from 'next/router'
 import ContentSection from "../../../common/ContentSection/ContentSection";
 import InnerSection from "../../../common/InnerSection/InnerSection";
@@ -11,14 +11,14 @@ export default function Emote(props) {
   const router = useRouter()
   let { tokenId, emote } = router.query
 
-  console.log("tokenId: " + tokenId);
-  console.log("emote: " + emote);
+  console.debug("tokenId: " + tokenId);
+  console.debug("emote: " + emote);
   if( !parseInt(tokenId) ) { tokenId = 0; }  
     
   let sendsLove = ['0','313']
   let lovesThis = ['0', '355', '626']
   let cupWinners = ['248', '46', '757', '868', '475', '407', '556', '184', '758', '184', '758', '421']
-  let buyMe = ['731','295','795', '677', '351','306', '387', '162', '466', '566']
+  let buyMe = ['466','566','47', '634', '724','217', '88', '96', '641', '484']
   let osLink = "https://opensea.io/assets/0x881d9c2f229323aad28a9c9045111e30e1f1eb25/" + tokenId
 
 
