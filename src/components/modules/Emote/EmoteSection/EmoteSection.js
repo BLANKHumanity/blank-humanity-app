@@ -14,7 +14,7 @@ export default function Emote(props) {
   console.debug("tokenId: " + tokenId);
   console.debug("emote: " + emote);
   if( !parseInt(tokenId) ) { tokenId = 0; }  
-    
+  if( !emote ) { emote = 'GM' }
   let sendsLove = ['0','313']
   let lovesThis = ['0', '355', '626']
   let cupWinners = ['248', '46', '757', '868', '475', '407', '556', '184', '758', '184', '758', '421']
