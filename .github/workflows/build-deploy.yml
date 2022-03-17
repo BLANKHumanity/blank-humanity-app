@@ -18,4 +18,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "blank-next" #Must be unique in Heroku
           heroku_email: "kris@pyxld.com"
-          appdir: "app" # <- This will point to the socketServer folder in your project
+          appdir: "/" # <- This will point to the socketServer folder in your project
