@@ -1,4 +1,4 @@
-import './styles.css'
+import '../styles.css'
 import { WalletDataProvider } from "../state/WalletContext.js";
 
 function MyApp({ Component, pageProps }) {
