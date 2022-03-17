@@ -14,6 +14,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.0.0",
     "@fortawesome/react-fontawesome": "^0.1.17",
     "@makerdao/multicall": "^0.12.0",
+    "buffer": "^6.0.3",
     "canvas": "^2.8.0",
     "constate": "^3.3.0",
     "ethereumjs-util": "^7.1.4",
