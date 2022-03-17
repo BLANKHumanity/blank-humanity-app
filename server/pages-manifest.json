@@ -1,0 +1,10 @@
+{
+  "/Demo": "pages/Demo.html",
+  "/Emote/[tokenId]/[emote]": "pages/Emote/[tokenId]/[emote].html",
+  "/GM": "pages/GM.html",
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/": "pages/index.html",
+  "/_error": "pages/_error.js",
+  "/404": "pages/404.html"
+}
