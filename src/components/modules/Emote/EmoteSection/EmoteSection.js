@@ -1,29 +1,27 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import { React } from "react";
+import { useRouter } from 'next/router'
 import ContentSection from "../../../common/ContentSection/ContentSection";
 import InnerSection from "../../../common/InnerSection/InnerSection";
 import Footer from "../../../common/Footer/Footer";
 import Dropdown from "../../../common/Dropdown/Dropdown";
+import Canvas from "../../../common/Canvas/Canvas";
 import initializerMetadata from "../../../../utils/initializers-metadata-lookup.json";
 
-
 export default function Emote(props) {
-  let { tokenId } = useParams();
-  if( !parseInt(tokenId) ) { tokenId = '0'; }  
-  
-  const [displayEmote, setDisplayEmote] = React.useState({displayEmote: "GM"});
-  const [initializer, setInitializer] = React.useState({initializer: tokenId});
+  const router = useRouter()
+  let { tokenId, emote } = router.query
+
+  console.debug("tokenId: " + tokenId);
+  console.debug("emote: " + emote);
+  if( !parseInt(tokenId) ) { tokenId = 0; }  
+    
   let sendsLove = ['0','313']
   let lovesThis = ['0', '355', '626']
   let cupWinners = ['248', '46', '757', '868', '475', '407', '556', '184', '758', '184', '758', '421']
-
-  //[update initializer when url is updated]
-  React.useEffect(() => {
-    setInitializer({initializer:tokenId})
-    setDisplayEmote({displayEmote: "GM"})
-  }, [tokenId]);
+  let buyMe = ['466','566','47', '634', '724','217', '88', '96', '641', '484']
   let osLink = "https://opensea.io/assets/0x881d9c2f229323aad28a9c9045111e30e1f1eb25/" + tokenId
-  
+
+
   function generateCaption(emote) {
     let caption = "";
     switch(emote) {
@@ -33,27 +31,29 @@ export default function Emote(props) {
       case "lovesThis": caption = 'loves this'; break;
       case "sendLove": caption = 'sends love'; break;
       case "CUP": caption = 'is a winner'; break;
+      case "buyMe": caption = 'says "Buy me on OpenSea"'; break;
       case "WAGMI": caption = 'insists We\'re All Gonna Make It'; break;
-      default: caption = "says " + emote
+      default: caption = `says "${emote}"`
     }
     return caption
   }
   function emojiForEmote(emote) {
-    let emoji = "";
+    let emoji = "/";
     switch(emote) {
-      case "lovesThis": emoji = 'heart'; break;
-      case "sendLove": emoji = 'heart'; break;
-      default: emoji = emote
+      case "lovesThis": emoji += 'heart'; break;
+      case "sendLove": emoji += 'heart'; break;
+      case "buyMe": emoji += 'MONEY'; break;
+      default: emoji += emote
     }
     return emoji
   }
-
-  function handleSelect(event) {
-      setDisplayEmote({displayEmote: event.currentTarget.value})
+    
+  function handleSelect(event) {  
+       router.push(`/Emote/${tokenId}/${event.currentTarget.value}`);
   }   
   
-  let caption = generateCaption(displayEmote.displayEmote);
-  let emoji = emojiForEmote(displayEmote.displayEmote)  + '.png';
+  let caption = generateCaption(emote);
+  let emoji = emojiForEmote(emote)  + '.png';
   let emotes = [
     {label:"GM", value:'GM'}, 
     {label:"GN", value:'GN'}
@@ -61,29 +61,48 @@ export default function Emote(props) {
   
   if(sendsLove.indexOf(tokenId) > -1) {
     emotes.push({label: "Sends love", value:'sendLove'})
-  }
+  } 
   if(lovesThis.indexOf(tokenId) > -1) {
     emotes.push({label: "Loves this", value:'lovesThis'})
-  }
+  } 
   if(cupWinners.indexOf(tokenId) > -1) {
     emotes.push({label: "Is a winner", value:'CUP'})
+  } 
+  if(buyMe.indexOf(tokenId) > -1) {
+    emotes.push({label: "BUY ME", value:'buyMe'})
   }
+  let fullCaption = `Initializer #${tokenId} ${caption}`
+
+  const draw = (context) => {    
+    context.fillStyle = '#FFFFFF'
+    context.fillRect(0, 0, context.canvas.width, context.canvas.height)
+    context.rect(10, 10, context.canvas.width-20 , context.canvas.height-20 )
+    context.stroke();
+    const img = new Image();    
+    img.src= initializerMetadata[tokenId][0].imageData;
+    img.onload = ()=>{context.drawImage(img, 20, 20, 370, 370);}
+
+    const emoteImg = new Image();
+    emoteImg.src = emoji;
+    emoteImg.onload = ()=>{context.drawImage(emoteImg, 390, 20);}    
+    
+    context.font = 'italic 1rem Fira Code';
+    context.fillStyle = 'black'
+    context.textAlign = 'center'
+    context.fillText(fullCaption, 270, 420);
+  }
+
   return (
     <div className="Emote">
         <ContentSection width="75%" style={{minHeight:"80vh", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
           <Dropdown 
             label="Emote:"
             options={emotes}
-            value={displayEmote.displayEmote}
-            onChange={handleSelect}></Dropdown>
+            value={emote}
+            onChange={handleSelect}
+            ></Dropdown>
           <InnerSection>
-          <div style={{border:"1px solid black", padding:"1rem", width:"75%", maxWidth:"500px", margin: "0 auto"}}>
-            <div>
-              <img src={initializerMetadata[tokenId][0].imageData} align="top" width="75%" alt={caption}/>
-              <img src={emoji} align="top" width="25%"/>
-            </div>
-            <div style={{fontStyle: "italic",fontSize: "2rem", paddingTop: "1rem"}}>Initializer #{initializer.initializer} {caption}</div>
-            </div>
+            <Canvas draw={draw} width="540px" height="450px"></Canvas>
           </InnerSection>
           <div>Check out Initializer #{tokenId} <a href={osLink} >on OpenSea</a></div>
         </ContentSection>
@@ -91,3 +110,4 @@ export default function Emote(props) {
     </div>
   );
 }
+  

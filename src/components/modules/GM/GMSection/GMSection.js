@@ -1,11 +1,13 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useRouter } from 'next/router'
 import ContentSection from "../../../common/ContentSection/ContentSection";
 import InnerSection from "../../../common/InnerSection/InnerSection";
 import initializerMetadata from "../../../../utils/initializers-metadata-lookup.json";
 
 export default function GM(props) {
-  let { tokenId } = useParams();
+  const router = useRouter()
+  let { tokenId } = router.query
+ 
   if( !parseInt(tokenId) ) { tokenId = 0; }
 
   return (

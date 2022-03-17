@@ -20,7 +20,7 @@ export default function WalletConnector({}) {
         zIndex: 999999999,
         }}
     >
-        {walletData.accounts.length ? (
+        {walletData && walletData.accounts.length ? (
         "Connected with wallet " + walletData.accounts[0]
         ) : (
         <button

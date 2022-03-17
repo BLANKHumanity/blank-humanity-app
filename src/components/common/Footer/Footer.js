@@ -2,6 +2,8 @@ import React from "react";
 
 import BrandFace from "../BrandFace/BrandFace.js";
 import JoinDiscordButton from "../JoinDiscordButton/JoinDiscordButton.js";
+import {faTwitter, faDiscord} from "@fortawesome/free-brands-svg-icons"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Logo from "../Logo/Logo.js";
 
@@ -46,16 +48,16 @@ export default function Footer(props) {
         <a
           href="https://discord.gg/ANT6XsSUyZ"
           target="_blank"
-          style={{ color: "white", textDecoration: "none" }}
+          style={{ color: "white", textDecoration: "none", fontSize: "2rem" }}
         >
-          <i class="fab fa-discord"></i>
+          <FontAwesomeIcon icon={faDiscord} />
         </a>
         <a
           href="https://twitter.com/blankhumanity"
           target="_blank"
-          style={{ color: "white", textDecoration: "none" }}
+          style={{ color: "white", textDecoration: "none", fontSize: "2rem" }}
         >
-          <i class="fab fa-twitter"></i>
+          <FontAwesomeIcon icon={faTwitter} />
         </a>
         <a
           href="https://opensea.io/collection/blank-humanity-initializers"
@@ -70,7 +72,7 @@ export default function Footer(props) {
           target="_blank"
           style={{ color: "white", textDecoration: "none" }}
         >
-          <i class="fab fa-reddit-alien"></i>
+          <i className="fab fa-reddit-alien"></i>
         </a>
         {*/}
       </div>
