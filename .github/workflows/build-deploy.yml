@@ -55,22 +55,23 @@ jobs:
   
   deploy:
     name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        working-directory: ./client
-#    if: github.ref == 'refs/heads/main'
-    
-    steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: production-files
-        path: ./
 
-    - name: Deploy to gh-pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./
+    on:
+      push:
+        branches:
+          - main
+      pull_request:
+        branches:
+          - main
+
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v2
+          - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+            with:
+              heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+              heroku_app_name: "blank-next" #Must be unique in Heroku
+              heroku_email: "kris@pyxld.com"
+              appdir: "app" # <- This will point to the socketServer folder in your project
