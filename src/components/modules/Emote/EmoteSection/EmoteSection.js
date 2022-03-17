@@ -31,9 +31,9 @@ export default function Emote(props) {
       case "lovesThis": caption = 'loves this'; break;
       case "sendLove": caption = 'sends love'; break;
       case "CUP": caption = 'is a winner'; break;
-      case "buyMe": caption = 'says BUY ME on OpenSea'; break;
+      case "buyMe": caption = 'says "Buy me on OpenSea"'; break;
       case "WAGMI": caption = 'insists We\'re All Gonna Make It'; break;
-      default: caption = "says " + emote
+      default: caption = `says "${emote}"`
     }
     return caption
   }
