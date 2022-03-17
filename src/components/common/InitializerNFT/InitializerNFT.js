@@ -1,8 +1,4 @@
 import React from "react";
-
-import BrandFace from "../BrandFace/BrandFace.js";
-
-import qrImage from "../../../images/blank-qr-code.png";
 import loadingAnimation from "../../../images/loading-animation.gif";
 
 export default function InitializerNFT({
@@ -25,6 +21,7 @@ export default function InitializerNFT({
     return await fetch(ioURL);
   };
 
+  const emoteLink = `/Emote/${tokenId}/GM`
   React.useEffect(async () => {
     // Get the metadata for this token
     try {
@@ -52,6 +49,9 @@ export default function InitializerNFT({
       <div className="NFTDescription">
         <span style={{ fontSize: ".8rem", marginBottom: ".5rem" }}>
           Initializer #{tokenId}
+        </span>
+        <span>
+          <a href={emoteLink}>Emote</a>
         </span>
         <div style={{ width: "100%" }}>
           {metadata?.attributes?.map((attribute) => {
