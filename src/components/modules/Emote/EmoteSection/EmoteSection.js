@@ -31,7 +31,7 @@ export default function Emote(props) {
       case "lovesThis": caption = 'loves this'; break;
       case "sendLove": caption = 'sends love'; break;
       case "CUP": caption = 'is a winner'; break;
-      case "MONEY": caption = 'says BUY ME on OpenSea'; break;
+      case "buyMe": caption = 'says BUY ME on OpenSea'; break;
       case "WAGMI": caption = 'insists We\'re All Gonna Make It'; break;
       default: caption = "says " + emote
     }
@@ -42,6 +42,7 @@ export default function Emote(props) {
     switch(emote) {
       case "lovesThis": emoji += 'heart'; break;
       case "sendLove": emoji += 'heart'; break;
+      case "buyMe": emoji += 'MONEY'; break;
       default: emoji += emote
     }
     return emoji
@@ -68,7 +69,7 @@ export default function Emote(props) {
     emotes.push({label: "Is a winner", value:'CUP'})
   } 
   if(buyMe.indexOf(tokenId) > -1) {
-    emotes.push({label: "BUY ME", value:'MONEY'})
+    emotes.push({label: "BUY ME", value:'buyMe'})
   }
   let fullCaption = `Initializer #${tokenId} ${caption}`
 
@@ -88,7 +89,7 @@ export default function Emote(props) {
     context.font = 'italic 1rem Fira Code';
     context.fillStyle = 'black'
     context.textAlign = 'center'
-    context.fillText(fullCaption, 270, 430);
+    context.fillText(fullCaption, 270, 420);
   }
 
   return (
