@@ -31,7 +31,7 @@ export default function Emote(props) {
       case "lovesThis": caption = 'loves this'; break;
       case "sendLove": caption = 'sends love'; break;
       case "CUP": caption = 'is a winner'; break;
-      case "MONEY": caption = 'says BUY ME'; break;
+      case "MONEY": caption = 'says BUY ME on OpenSea'; break;
       case "WAGMI": caption = 'insists We\'re All Gonna Make It'; break;
       default: caption = "says " + emote
     }
@@ -75,7 +75,7 @@ export default function Emote(props) {
   const draw = (context) => {    
     context.fillStyle = '#FFFFFF'
     context.fillRect(0, 0, context.canvas.width, context.canvas.height)
-    context.rect(10, 10, context.canvas.width-10 , context.canvas.height-10 )
+    context.rect(10, 10, context.canvas.width-20 , context.canvas.height-20 )
     context.stroke();
     const img = new Image();    
     img.src= initializerMetadata[tokenId][0].imageData;
