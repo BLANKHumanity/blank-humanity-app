@@ -16,7 +16,7 @@ export default function Emote(props) {
   if( !parseInt(tokenId) ) { tokenId = 0; }  
   if( !emote ) { emote = 'GM' }
   let sendsLove = ['0','313']
-  let lovesThis = ['0', '355', '626']
+  let lovesThis = ['0', '355', '626', '335']
   let cupWinners = ['248', '46', '757', '868', '475', '407', '556', '184', '758', '184', '758', '421']
   let buyMe = ['466','566','47', '634', '724','217', '88', '96', '641', '484']
   let osLink = "https://opensea.io/assets/0x881d9c2f229323aad28a9c9045111e30e1f1eb25/" + tokenId
