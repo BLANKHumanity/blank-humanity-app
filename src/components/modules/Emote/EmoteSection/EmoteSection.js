@@ -86,8 +86,8 @@ export default function Emote(props) {
 
   return (
     <div className="Emote">
-        <h1>Initializer #{initializer} Emotes</h1>
         <ContentSection width="75%" style={{minHeight:"80vh", display:"flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center", alignItems:"center"}}>
+          <h1 style={{flexBasis:"100%"}}>Initializer #{initializer} Emotes</h1>
             {emotes.map((entry, i) => {
                 return (
                   <InnerSection key={entry.emote} width='540px' style={{margin: "1rem"}}>
@@ -96,8 +96,8 @@ export default function Emote(props) {
                 );
                 })
                 }
+          <div style={{marginBottom: "1rem", flexBasis:"100%"}}>Check out Initializer #{initializer} <a href={openSeaLink} >on OpenSea</a></div>
         </ContentSection>
-        <div style={{marginBottom: "1rem"}}>Check out Initializer #{initializer} <a href={openSeaLink} >on OpenSea</a></div>
         <Footer />
     </div>
   );
