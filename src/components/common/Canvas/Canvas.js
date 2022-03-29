@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 
 const Canvas = props => {
-    const { draw, ...rest } = props
+    const { draw, initializer, emote, caption, ...rest } = props
 
     function resizeCanvas(canvas) {
         const { width, height } = canvas.getBoundingClientRect()
@@ -23,7 +23,7 @@ const Canvas = props => {
   useEffect(() => {
     const canvas = canvasRef.current
     const context = canvas.getContext('2d')    
-    draw(context);
+    draw(context, initializer, emote, caption);
   }, [draw])
 
   return (<div style={{margin: "0 auto", width:`${props.width}`}}>

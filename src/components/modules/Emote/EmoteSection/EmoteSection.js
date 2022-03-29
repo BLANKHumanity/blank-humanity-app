@@ -9,36 +9,17 @@ import initializerMetadata from "../../../../utils/initializers-metadata-lookup.
 
 export default function Emote(props) {
   const router = useRouter()
-  let { tokenId, emote } = router.query
+  let { tokenId } = router.query
   
   let sendsLove = ['0','313']
   let lovesThis = ['0', '355', '626', '335']
   let cupWinners = ['248', '46', '757', '868', '475', '407', '556', '184', '758', '184', '758', '421']
   let buyMe = ['466','566','47', '634', '724','217', '88', '96', '641', '484']
-  
-  if( !parseInt(tokenId) ) { tokenId = 0; }  
-  if( !emote || !validEmoteForToken(tokenId, emote) ) { emote = 'GM' }
+  let initializer = 0;
 
-  const [emoteImage, setEmoteImage] = React.useState(generateEmoteImage(emote));
-  const [emoteCaption, setEmoteCaption] = React.useState(generateCaption(tokenId, emote));
-  const [initializer, setInitializer] = React.useState(tokenId);
-  const [openSeaLink, setOpenSeaLink] = React.useState("https://opensea.io/assets/0x881d9c2f229323aad28a9c9045111e30e1f1eb25/" + tokenId);
+  if( parseInt(tokenId) ) { initializer = tokenId; }  
+  let openSeaLink = "https://opensea.io/assets/0x881d9c2f229323aad28a9c9045111e30e1f1eb25/" + initializer
 
-  React.useEffect(() => {
-    setInitializer(tokenId)
-    setEmoteImage(generateEmoteImage(emote))
-    setEmoteCaption(generateCaption(tokenId, emote))
-    setOpenSeaLink(`https://opensea.io/assets/0x881d9c2f229323aad28a9c9045111e30e1f1eb25/${tokenId}`)
-  }, [tokenId, emoteImage, emoteCaption, openSeaLink]);
-
-  function validEmoteForToken(tokenId, emote) {
-    switch(emote) {
-      case 'sendLove': return sendsLove.indexOf(tokenId) >= 0;
-      case 'lovesThis': return lovesThis.indexOf(tokenId) >= 0;
-      case 'cupWinners': return cupWinners.indexOf(tokenId) >= 0;
-      case 'buyMe': return buyMe.indexOf(tokenId) >= 0;
-    }
-  }
   function generateCaption(initializer, emote) {
     let caption = "";
     switch(emote) {
@@ -66,61 +47,57 @@ export default function Emote(props) {
     return `${emoji}.png`
   }
     
-  function handleSelect(event) {  
-       router.push(`/Emote/${tokenId}/${event.currentTarget.value}`);
-  }   
-    
-  let emotes = [
-    {label:"GM", value:'GM'}, 
-    {label:"GN", value:'GN'}
-  ];
+  let emotes = [{emote:generateEmoteImage('GM'), caption:generateCaption(tokenId, 'GM')}, {emote:generateEmoteImage('GN'), caption:generateCaption(tokenId, 'GN')}];
   
   if(sendsLove.indexOf(tokenId) > -1) {
-    emotes.push({label: "Sends love", value:'sendLove'})
+    emotes.push({emote: generateEmoteImage('sendLove'), caption: generateCaption(tokenId, 'sendLove')})
   } 
   if(lovesThis.indexOf(tokenId) > -1) {
-    emotes.push({label: "Loves this", value:'lovesThis'})
+    emotes.push({emote: generateEmoteImage('lovesThis'), caption: generateCaption(tokenId, 'lovesThis')})
   } 
   if(cupWinners.indexOf(tokenId) > -1) {
-    emotes.push({label: "Is a winner", value:'CUP'})
+    emotes.push({emote: generateEmoteImage('CUP'), caption: generateCaption(tokenId, 'CUP')})
   } 
   if(buyMe.indexOf(tokenId) > -1) {
-    emotes.push({label: "BUY ME", value:'buyMe'})
+    emotes.push({emote: generateEmoteImage('buyMe'), caption: generateCaption(tokenId, 'buyMe')})
   }
 
-  const draw = (context) => {    
+  const draw = (context, initializer, emote, caption) => {    
     context.fillStyle = '#FFFFFF'
     context.fillRect(0, 0, context.canvas.width, context.canvas.height)
     context.rect(10, 10, context.canvas.width-20 , context.canvas.height-20 )
     context.stroke();
     const img = new Image();    
-    img.src= initializerMetadata[tokenId][0].imageData;
+    img.src= initializerMetadata[initializer][0].imageData;
     img.onload = ()=>{context.drawImage(img, 20, 20, 370, 370);}
 
     const emoteImg = new Image();
-    emoteImg.src = emoteImage;
-    emoteImg.onload = ()=>{context.drawImage(emoteImg, 390, 20);}    
-    
+    emoteImg.src = emote;
+    emoteImg.onload = ()=>{
+      context.clearRect(390, 20, 128, 107)
+      context.drawImage(emoteImg, 390, 20);
+    }    
+  
     context.font = 'italic 1rem Fira Code';
     context.fillStyle = 'black'
     context.textAlign = 'center'
-    context.fillText(emoteCaption, 270, 420);
+    context.fillText(caption, 270, 420);
   }
 
   return (
     <div className="Emote">
-        <ContentSection width="75%" style={{minHeight:"80vh", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
-          <Dropdown 
-            label="Emote:"
-            options={emotes}
-            value={emote}
-            onChange={handleSelect}
-            ></Dropdown>
-          <InnerSection>
-            <Canvas draw={draw} width="540px" height="450px"></Canvas>
-          </InnerSection>
-          <div>Check out Initializer #{initializer} <a href={openSeaLink} >on OpenSea</a></div>
+        <h1>Initializer #{initializer} Emotes</h1>
+        <ContentSection width="75%" style={{minHeight:"80vh", display:"flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center", alignItems:"center"}}>
+            {emotes.map((entry, i) => {
+                return (
+                  <InnerSection key={entry.emote} width='540px' style={{margin: "1rem"}}>
+                    <Canvas draw={draw} initializer={initializer} emote={entry.emote} caption={entry.caption} width="540px" height="450px"></Canvas>
+                  </InnerSection>
+                );
+                })
+                }
         </ContentSection>
+        <div style={{marginBottom: "1rem"}}>Check out Initializer #{initializer} <a href={openSeaLink} >on OpenSea</a></div>
         <Footer />
     </div>
   );

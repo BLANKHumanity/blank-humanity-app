@@ -1,6 +1,6 @@
 import React from "react";
 
-import EmoteSection from "../../../../components/modules/Emote/EmoteSection/EmoteSection.js";
+import EmoteSection from "../../../components/modules/Emote/EmoteSection/EmoteSection.js";
 
 export default function Emote(props) {  
   return (
