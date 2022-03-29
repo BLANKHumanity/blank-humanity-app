@@ -21,7 +21,7 @@ export default function InitializerNFT({
     return await fetch(ioURL);
   };
 
-  const emoteLink = `/Emote/${tokenId}/GM`
+  const emoteLink = `/Emote/${tokenId}`
   React.useEffect(async () => {
     // Get the metadata for this token
     try {
