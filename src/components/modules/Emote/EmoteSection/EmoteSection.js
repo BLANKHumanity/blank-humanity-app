@@ -9,7 +9,7 @@ import initializerMetadata from "../../../../utils/initializers-metadata-lookup.
 
 export default function Emote(props) {
   const router = useRouter()
-  let { tokenId } = router.query
+  let { tokenId, emote } = router.query
   
   let sendsLove = ['0','313']
   let lovesThis = ['0', '355', '626', '335']
@@ -18,8 +18,10 @@ export default function Emote(props) {
   let initializer = 0;
 
   if( parseInt(tokenId) ) { initializer = tokenId; }  
+  if( emote && !validEmoteForToken(tokenId, emote) ) { router.push(`/Emote/${tokenId}`); }
+  
   let openSeaLink = "https://opensea.io/assets/0x881d9c2f229323aad28a9c9045111e30e1f1eb25/" + initializer
-
+  
   function generateCaption(initializer, emote) {
     let caption = "";
     switch(emote) {
@@ -46,21 +48,36 @@ export default function Emote(props) {
     }
     return `${emoji}.png`
   }
-    
-  let emotes = [{emote:generateEmoteImage('GM'), caption:generateCaption(tokenId, 'GM')}, {emote:generateEmoteImage('GN'), caption:generateCaption(tokenId, 'GN')}];
-  
-  if(sendsLove.indexOf(tokenId) > -1) {
-    emotes.push({emote: generateEmoteImage('sendLove'), caption: generateCaption(tokenId, 'sendLove')})
-  } 
-  if(lovesThis.indexOf(tokenId) > -1) {
-    emotes.push({emote: generateEmoteImage('lovesThis'), caption: generateCaption(tokenId, 'lovesThis')})
-  } 
-  if(cupWinners.indexOf(tokenId) > -1) {
-    emotes.push({emote: generateEmoteImage('CUP'), caption: generateCaption(tokenId, 'CUP')})
-  } 
-  if(buyMe.indexOf(tokenId) > -1) {
-    emotes.push({emote: generateEmoteImage('buyMe'), caption: generateCaption(tokenId, 'buyMe')})
+  function validEmoteForToken(tokenId, emote) {
+    switch(emote) {
+      case 'sendLove': return sendsLove.indexOf(tokenId) >= 0;
+      case 'lovesThis': return lovesThis.indexOf(tokenId) >= 0;
+      case 'cupWinners': return cupWinners.indexOf(tokenId) >= 0;
+      case 'buyMe': return buyMe.indexOf(tokenId) >= 0;
+      case 'GM': 
+      case 'GN': return true;
+      default: return false;
+    }
   }
+  let emotes = [];
+  if( emote ) {
+    emotes = [{emote:generateEmoteImage(emote), caption:generateCaption(tokenId, emote)}];
+  } else {
+    emotes = [{emote:generateEmoteImage('GM'), caption:generateCaption(tokenId, 'GM')}, {emote:generateEmoteImage('GN'), caption:generateCaption(tokenId, 'GN')}];
+    if(sendsLove.indexOf(tokenId) > -1) {
+      emotes.push({emote: generateEmoteImage('sendLove'), caption: generateCaption(tokenId, 'sendLove')})
+    } 
+    if(lovesThis.indexOf(tokenId) > -1) {
+      emotes.push({emote: generateEmoteImage('lovesThis'), caption: generateCaption(tokenId, 'lovesThis')})
+    } 
+    if(cupWinners.indexOf(tokenId) > -1) {
+      emotes.push({emote: generateEmoteImage('CUP'), caption: generateCaption(tokenId, 'CUP')})
+    } 
+    if(buyMe.indexOf(tokenId) > -1) {
+      emotes.push({emote: generateEmoteImage('buyMe'), caption: generateCaption(tokenId, 'buyMe')})
+    }
+  }
+  
 
   const draw = (context, initializer, emote, caption) => {    
     context.fillStyle = '#FFFFFF'
@@ -74,7 +91,6 @@ export default function Emote(props) {
     const emoteImg = new Image();
     emoteImg.src = emote;
     emoteImg.onload = ()=>{
-      context.clearRect(390, 20, 128, 107)
       context.drawImage(emoteImg, 390, 20);
     }    
   
