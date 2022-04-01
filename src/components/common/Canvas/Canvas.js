@@ -24,7 +24,7 @@ const Canvas = props => {
     const canvas = canvasRef.current
     const context = canvas.getContext('2d')    
     draw(context, initializer, emote, caption);
-  }, [draw])
+  }, [draw, initializer, emote, caption])
 
   return (<div style={{margin: "0 auto", width:`${props.width}`}}>
   <canvas ref={canvasRef} {...rest}/>            

@@ -6,7 +6,7 @@ import "../styles.css";
 
 import HomePage from "./pages/Home.js";
 import GMPage from "./pages/GM.js";
-import EmotePage from "./pages/Emote/[tokenId]//[emote]//index.js";
+import EmotePage from "./pages/Emote/[tokenId]/index.js";
 import DemoPage from "./pages/Demo.js";
 
 export default function App() {
