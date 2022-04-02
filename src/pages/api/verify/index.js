@@ -13,7 +13,8 @@ const verifyWallet = async (
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(req.body),
-    })
+    }).then(res => res.json())
+    .then(json => console.log(json));
 
 };
 export default verifyWallet;
