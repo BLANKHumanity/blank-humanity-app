@@ -8,6 +8,8 @@ export default function SignMessageButton({
     salt
   }) {
     const [display, setDisplay] = React.useState("none");
+    const [disabled, setDisabled] = React.useState(false);
+    const [buttonText, setButtonText] = React.useState("SIGN MESSAGE");
   
     React.useEffect(async () => {
       const cssDisplay = accounts.length == 0 ? "none" : "inline";
@@ -17,6 +19,7 @@ export default function SignMessageButton({
       <button
         style={{ display: display }}
         className="ButtonBlack"
+        disabled={disabled}
         onClick={async () => {
             var signature = await web3.eth.personal.sign(message, accounts[0], function(error, signature) {
                 fetch('/api/verify', {
@@ -26,13 +29,14 @@ export default function SignMessageButton({
                     },
                     body: JSON.stringify({
                         salt: salt, 
-                        signature: signature
+                        signature: signature, 
+                        address:accounts[0]
                     }),
-                })
+                }).then(res => res.status == 200 ? setDisabled(true) : setButtonText("TRY AGAIN"))
             })
         }}
       >
-        SIGN MESSAGE
+        {disabled?"SUCCESS: You can close this window":buttonText}
       </button>
     );
   }

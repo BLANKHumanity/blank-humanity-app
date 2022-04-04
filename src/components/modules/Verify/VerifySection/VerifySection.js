@@ -12,7 +12,6 @@ export default function Verify(props) {
     const {walletData, setWalletData} = useWalletDataContext();
     
     if(walletData?.accounts?.length) {
-
         let message = `Hi, to connect your Ethereum Address to this Discord Account ${discord_id} on the Blank Humanity Server, please sign this random message: ${salt}`
         return (  
             <div className="Verify">

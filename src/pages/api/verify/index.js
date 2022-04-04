@@ -6,15 +6,18 @@ const verifyWallet = async (
         res.status(405).send({ message: 'Only POST requests allowed' })
         return
     }
-    console.log(req.body.signature);
-    fetch('https://discord.blankhumanity.com/register-wallet', {
+    
+    let testUrl = "https://test.jectrum.de/wallets/discord/registerVerifiedWallet"
+    let prodUrl = 'https://discord.blankhumanity.com/register-wallet'
+    
+    await fetch(testUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(req.body),
-    }).then(res => res.json())
-    .then(json => console.log(json));
-
+    }).then(fetchRes => res.status(fetchRes.status))
+    
+    res.send();
 };
 export default verifyWallet;
