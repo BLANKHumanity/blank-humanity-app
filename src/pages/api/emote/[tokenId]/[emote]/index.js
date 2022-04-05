@@ -5,7 +5,10 @@ const createEmote = async (
   req,
   res
 ) => {
-  let { tokenId, emote, scale } = req.query
+  let { tokenId, emote } = req.query
+  let url = new URL(`http://localhost${req.url}`)
+  let scale = url.searchParams.get("scale") || 1;
+  
   if ( !emoteUtils.validEmoteForToken(tokenId, emote) ) { emote = "GM" }
   if (!scale) { scale = 1; }
   registerFont('public/Bungee-Regular.ttf', { family: 'Bungee' });
