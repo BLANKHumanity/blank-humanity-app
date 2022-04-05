@@ -10,10 +10,10 @@ const createEmote = async (
   switch(size) {
     case "sm": scale = .5; break;
     case "small": scale = .5; break;
-    case "med": scale = 1; break;
-    case "medium": scale = 1; break;
-    case "lg": scale = 1.5; break;
-    case "large": scale = 1.5; break;
+    case "med": scale = .8; break;
+    case "medium": scale = .8; break;
+    case "lg": scale = 1; break;
+    case "large": scale = 1; break;
   }
   if ( !emoteUtils.validEmoteForToken(tokenId, emote) ) { emote = "GM" }
 
