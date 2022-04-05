@@ -66,23 +66,31 @@ function getEmotesForInitializer(tokenId, emote) {
     }
     return emotes;
 }
-async function drawEmote(context, initializer, emote, caption) {
-    console.log("drawEmote loading image")
+async function drawEmote(context, initializer, emote, caption, blankImage) {
     const img = await Canvas.loadImage(initializerMetadata[initializer][0].imageData);    
-    console.log("drawEmote image loaded")
     context.fillStyle = '#FFFFFF'
     context.fillRect(0, 0, context.canvas.width, context.canvas.height)
-    context.rect(10, 10, context.canvas.width-20 , context.canvas.height-20 )
+    context.rect(10, 40, context.canvas.width-20 , context.canvas.height-50 )
     context.stroke();
-    context.drawImage(img, 20, 20, 370, 370);
+    context.drawImage(img, 20, 45, 370, 400);
 
     const emoteImg = await Canvas.loadImage(emote);
-    context.drawImage(emoteImg, 390, 20);
-
-    context.font = 'italic 1rem Fira Code';
+    context.drawImage(emoteImg, 390, 50);
+    
+    context.textAlign = 'left'
     context.fillStyle = 'black'
+    context.font = '1rem Bungee';
+    context.fillText("BLANK Humanity", 10, 25 )
+    
+    context.font = 'italic 1rem Fira Code';
     context.textAlign = 'center'
-    context.fillText(caption, 270, 420);
+    context.fillText(caption, 270, 470);
+
+    const blankImg = await Canvas.loadImage(blankImage);
+    context.drawImage(blankImg, context.canvas.width-40, 0);
+    
+
+
 }
 
 export default {
