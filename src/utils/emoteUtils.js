@@ -35,7 +35,7 @@ function validEmoteForToken(tokenId, emote) {
     switch(emote) {
         case 'sendLove': return sendsLove.indexOf(tokenId) >= 0;
         case 'lovesThis': return lovesThis.indexOf(tokenId) >= 0;
-        case 'cupWinners': return cupWinners.indexOf(tokenId) >= 0;
+        case 'CUP': return cupWinners.indexOf(tokenId) >= 0;
         case 'buyMe': return buyMe.indexOf(tokenId) >= 0;
         case 'GM': 
         case 'GN': return true;
