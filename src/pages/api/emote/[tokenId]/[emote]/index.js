@@ -7,6 +7,7 @@ const createEmote = async (
 ) => {
   let { tokenId, emote, scale } = req.query
   if ( !emoteUtils.validEmoteForToken(tokenId, emote) ) { emote = "GM" }
+  if (!scale) { scale = 1; }
   registerFont('public/Bungee-Regular.ttf', { family: 'Bungee' });
   registerFont('public/FiraCode-Regular.ttf', { family: 'Fira Code' });
   const WIDTH = 540 * scale;
