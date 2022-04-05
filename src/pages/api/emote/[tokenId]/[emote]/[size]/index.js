@@ -1,15 +1,25 @@
 import { registerFont, createCanvas } from 'canvas'
-import emoteUtils from "../../../../../utils/emoteUtils";
+import emoteUtils from "../../../../../../utils/emoteUtils";
 
 const createEmote = async (
   req,
   res
 ) => {
-  let { tokenId, emote, scale } = req.query
+  let { tokenId, emote, size } = req.query
+  let scale = 1;
+  switch(size) {
+    case "sm": scale = .5; break;
+    case "small": scale = .5; break;
+    case "med": scale = .8; break;
+    case "medium": scale = .8; break;
+    case "lg": scale = 1; break;
+    case "large": scale = 1; break;
+  }
   if ( !emoteUtils.validEmoteForToken(tokenId, emote) ) { emote = "GM" }
-  if (!scale) { scale = 1; }
+
   registerFont('public/Bungee-Regular.ttf', { family: 'Bungee' });
   registerFont('public/FiraCode-Regular.ttf', { family: 'Fira Code' });
+
   const WIDTH = 540 * scale;
   const HEIGHT = 490 * scale;
   const DX = 0
