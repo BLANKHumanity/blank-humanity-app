@@ -8,7 +8,8 @@ const createEmote = async (
   let { tokenId, emote } = req.query
   let url = new URL(`http://localhost${req.url}`)
   let scale = url.searchParams.get("scale") || 1;
-  
+  console.log(`url: ${req.url}`)
+  console.log(`req.query: ${JSON.stringify(req.query)}`)
   if ( !emoteUtils.validEmoteForToken(tokenId, emote) ) { emote = "GM" }
   if (!scale) { scale = 1; }
   registerFont('public/Bungee-Regular.ttf', { family: 'Bungee' });
