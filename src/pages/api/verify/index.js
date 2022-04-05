@@ -10,7 +10,7 @@ const verifyWallet = async (
     let testUrl = "https://test.jectrum.de/wallets/discord/registerVerifiedWallet"
     let prodUrl = 'https://discord.blankhumanity.com/register-wallet'
     
-    await fetch(testUrl, {
+    await fetch(prod, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
