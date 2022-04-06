@@ -25,26 +25,26 @@ export default function SignMessageButton({
           disabled={disabled}
           onClick={async () => {
               var signature = await web3.eth.personal.sign(message, accounts[0], function(error, signature) {
-                  fetch('/api/verify', {
-                      method: 'POST',
-                      headers: {
-                          'Content-Type': 'application/json',
-                      },
-                      body: JSON.stringify({
-                          salt: salt, 
-                          signature: signature, 
-                          address:accounts[0]
-                      }),
-                  }).then(res => {
-                    if(res.status == 200) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", '/api/verify', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify({
+                  salt: salt, 
+                  signature: signature, 
+                  address:accounts[0]
+                }));
+                xhr.onreadystatechange = () => {
+                  if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
                       setResponseMessage("SUCCESS: You can close this window");
                       setButtonText("ALL DONE");
                       setDisabled(true);
                     } else {
                       setButtonText("TRY AGAIN");
-                      setResponseMessage("There was an error processing the signature, please try again. If this problem persists, try starting over from discord.")
-                    } 
-                  })
+                      setResponseMessage("There was an error processing the signature, please try again. If this problem persists, try starting over from discord.")                              
+                    }
+                  }
+                }
               })
           }}
         >

@@ -4,8 +4,8 @@ const verifyWallet = async (
   ) => {
     if (req.method !== 'POST') {
         console.log(`Only POST requests allowed, requested method was ${req.method}`)
-        // res.status(405).send({ message: `Only POST requests allowed, requested method was ${req.method}` })
-        // return
+        res.status(405).send({ message: `Only POST requests allowed, requested method was ${req.method}` })
+        return
     }
     let testUrl = "https://test.jectrum.de/wallets/discord/registerVerifiedWallet"
     let prodUrl = 'https://discord.blankhumanity.com/register-wallet'
