@@ -26,7 +26,7 @@ export default function SignMessageButton({
           onClick={async () => {
               var signature = await web3.eth.personal.sign(message, accounts[0], function(error, signature) {
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", '/api/verify', true);
+                xhr.open("POST", 'https://app.blankhumanity.com/api/verify', true);
                 xhr.setRequestHeader('Content-Type', 'application/json');
                 xhr.send(JSON.stringify({
                   salt: salt, 
