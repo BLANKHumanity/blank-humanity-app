@@ -17,8 +17,10 @@ export default function Verify(props) {
             <div className="Verify">
             <ContentSection width="75%" style={{minHeight:"80vh", display:"flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center", alignItems:"center"}}>
                 <h1 style={{flexBasis:"100%"}}>Verify your wallet</h1>
-                <p>Connect your wallet with Metamask and sign the message to validate your discord/wallet connection</p>
+                <p>Connect your wallet with Metamask and sign the message to validate your discord/wallet connection.</p>
+                <p>Once you've completed this, you'll have access to extra features in the BLANK Humanity discord server.</p>
                 <SignMessageButton message={message} accounts={walletData?.accounts} salt={salt} web3={walletData.web3}/>
+                <p>This page is open source, you can view the source code <a href="https://github.com/BLANKHumanity/blank-humanity-app/blob/main/src/components/modules/Verify/VerifySection/VerifySection.js">on GitHub</a></p>
             </ContentSection>
             <Footer />
         </div>
