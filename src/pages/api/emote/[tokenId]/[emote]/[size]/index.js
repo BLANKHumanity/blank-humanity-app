@@ -15,7 +15,7 @@ const createEmote = async (
     case "lg": scale = 1; break;
     case "large": scale = 1; break;
   }
-  if ( !emoteUtils.validEmoteForToken(tokenId, emote) ) { emote = "GM" }
+  if ( !emoteUtils.validEmoteForToken(tokenId, emote) ) { res.status(402); res.send(); return; }
 
   registerFont('public/Bungee-Regular.ttf', { family: 'Bungee' });
   registerFont('public/FiraCode-Regular.ttf', { family: 'Fira Code' });
