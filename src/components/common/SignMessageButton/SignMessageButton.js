@@ -30,7 +30,6 @@ export default function SignMessageButton({
                       headers: {
                           'Content-Type': 'application/json',
                       },
-                      redirect: "manual",
                       body: JSON.stringify({
                           salt: salt, 
                           signature: signature, 
