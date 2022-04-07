@@ -24,6 +24,9 @@ export default function SignMessageButton({
           className="ButtonBlack"
           disabled={disabled}
           onClick={async () => {
+            if(buttonText == "ALL DONE") {
+              window.location = '/';
+            } else { 
               var signature = await web3.eth.personal.sign(message, accounts[0], function(error, signature) {
                   fetch('/api/verify', {
                       method: 'POST',
@@ -39,13 +42,13 @@ export default function SignMessageButton({
                     if(res.status == 200) {
                       setResponseMessage("SUCCESS: You can close this window");
                       setButtonText("ALL DONE");
-                      setDisabled(true);
                     } else {
                       setButtonText("TRY AGAIN");
                       setResponseMessage("There was an error processing the signature, please try again. If this problem persists, try starting over from discord.")
                     } 
                   })
               })
+            }
           }}
         >
           {buttonText}

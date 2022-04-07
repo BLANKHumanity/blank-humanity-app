@@ -43,7 +43,7 @@ function validEmoteForToken(tokenId, emote) {
     }
 }
 function getEmotesForInitializer(tokenId, emote) {
-    let sendsLove = ['0','313', '137', '66', '730','373','790','642']
+    let sendsLove = ['0','313', '355', '137', '66', '730','373','790','642']
     let lovesThis = ['0', '355', '626', '335', '137', '66', '730','373','790','642']
     let cupWinners = ['248', '46', '757', '868', '475', '407', '556', '184', '758', '184', '758', '421']
     let buyMe = ['466','566','47', '634', '724','217', '88', '96', '641', '484']
@@ -51,18 +51,18 @@ function getEmotesForInitializer(tokenId, emote) {
     if(tokenId == -1) {
         return [];
     }
-    let emotes = [{emote:generateEmoteImage('GM'), caption:generateCaption(tokenId, 'GM')}, {emote:generateEmoteImage('GN'), caption:generateCaption(tokenId, 'GN')}];
+    let emotes = [{emote:'GM', emoteImg:generateEmoteImage('GM'), caption:generateCaption(tokenId, 'GM')}, {emote:'GN', emoteImg:generateEmoteImage('GN'), caption:generateCaption(tokenId, 'GN')}];
     if(sendsLove.indexOf(tokenId) > -1) {
-        emotes.push({emote: generateEmoteImage('sendLove'), caption: generateCaption(tokenId, 'sendLove')})
+        emotes.push({emote:'sendLove', emoteImg: generateEmoteImage('sendLove'), caption: generateCaption(tokenId, 'sendLove')})
     } 
     if(lovesThis.indexOf(tokenId) > -1) {
-        emotes.push({emote: generateEmoteImage('lovesThis'), caption: generateCaption(tokenId, 'lovesThis')})
+        emotes.push({emote:'lovesThis', emoteImg: generateEmoteImage('lovesThis'), caption: generateCaption(tokenId, 'lovesThis')})
     } 
     if(cupWinners.indexOf(tokenId) > -1) {
-        emotes.push({emote: generateEmoteImage('CUP'), caption: generateCaption(tokenId, 'CUP')})
+        emotes.push({emote:'CUP', emoteImg: generateEmoteImage('CUP'), caption: generateCaption(tokenId, 'CUP')})
     } 
     if(buyMe.indexOf(tokenId) > -1) {
-        emotes.push({emote: generateEmoteImage('buyMe'), caption: generateCaption(tokenId, 'buyMe')})
+        emotes.push({emote:'buyMe', emoteImg: generateEmoteImage('buyMe'), caption: generateCaption(tokenId, 'buyMe')})
     }
     return emotes;
 }

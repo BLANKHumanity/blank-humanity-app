@@ -29,7 +29,7 @@ export default function Emote(props) {
             console.log(`Initializer ${initializer} emotes ${entry.emote}`)
             return (
                 <InnerSection key={entry.emote} width='540px' style={{margin: "1rem"}}>
-                  <Canvas draw={emoteUtils.drawEmote} initializer={initializer} emote={entry.emote} caption={entry.caption} blankImage="/BLANK.png" width="540px" height="490px"></Canvas>
+                  <img src={`/api/emote/${tokenId}/${entry.emote}/sm`}/>
                 </InnerSection>
               );
             })
