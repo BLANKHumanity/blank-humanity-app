@@ -53,7 +53,7 @@ function getEmotesForInitializer(tokenId, emote) {
     }
     let emotes = [{emote:'GM', emoteImg:generateEmoteImage('GM'), caption:generateCaption(tokenId, 'GM')}, {emote:'GN', emoteImg:generateEmoteImage('GN'), caption:generateCaption(tokenId, 'GN')}];
     if(sendsLove.indexOf(tokenId) > -1) {
-        emotes.push({emote:'sendLove', emoteImg: generateEmoteImage('sendLove'), caption: generateCaption(tokenId, 'sendLove')})
+        emotes.push({emote:'sendsLove', emoteImg: generateEmoteImage('sendLove'), caption: generateCaption(tokenId, 'sendsLove')})
     } 
     if(lovesThis.indexOf(tokenId) > -1) {
         emotes.push({emote:'lovesThis', emoteImg: generateEmoteImage('lovesThis'), caption: generateCaption(tokenId, 'lovesThis')})
