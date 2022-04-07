@@ -16,6 +16,7 @@ export default function SignMessageButton({
       const cssDisplay = accounts.length == 0 ? "none" : "inline";
       setDisplay(cssDisplay);
     }, [accounts]);
+    
     return (
       <div>
         <p className="message">{responseMessage}</p>
