@@ -20,8 +20,8 @@ const createEmote = async (
   registerFont('public/Bungee-Regular.ttf', { family: 'Bungee' });
   registerFont('public/FiraCode-Regular.ttf', { family: 'Fira Code' });
 
-  const WIDTH = 540 * scale;
-  const HEIGHT = 490 * scale;
+  const WIDTH = 350 * scale;
+  const HEIGHT = 300 * scale;
   const DX = 0
   const DY = 0
   const canvas = createCanvas(WIDTH, HEIGHT);

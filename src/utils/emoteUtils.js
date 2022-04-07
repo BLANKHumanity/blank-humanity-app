@@ -27,8 +27,8 @@ function generateEmoteImage(emote) {
     return `${emoji}.png`
 }
 function validEmoteForToken(tokenId, emote) {
-    let sendsLove = ['0','313', '355', '137', '66', '730','373','790','642', '868']
-    let lovesThis = ['0', '355', '626', '335', '137', '66', '730','373','790','642', '868']
+    let sendsLove = ['0','313', '355', '137', '66', '730','373','790','642', '868', '34']
+    let lovesThis = ['0', '355', '626', '335', '137', '66', '730','373','790','642', '868', '34']
     let cupWinners = ['248', '46', '757', '868', '475', '407', '556', '184', '758', '184', '758', '421']
     let buyMe = ['466','566','47', '634', '724','217', '88', '96', '641', '484']
 
@@ -43,8 +43,8 @@ function validEmoteForToken(tokenId, emote) {
     }
 }
 function getEmotesForInitializer(tokenId, emote) {
-    let sendsLove = ['0','313', '355', '137', '66', '730','373','790','642', '868']
-    let lovesThis = ['0', '355', '626', '335', '137', '66', '730','373','790','642', '868']
+    let sendsLove = ['0','313', '355', '137', '66', '730','373','790','642', '868', '34']
+    let lovesThis = ['0', '355', '626', '335', '137', '66', '730','373','790','642', '868', '34']
     let cupWinners = ['248', '46', '757', '868', '475', '407', '556', '184', '758', '184', '758', '421']
     let buyMe = ['466','566','47', '634', '724','217', '88', '96', '641', '484']
 
@@ -74,19 +74,20 @@ async function drawEmote(context, initializer, emote, caption, blankImage, scale
     context.stroke();
     context.scale(scale, scale);
     
-    context.drawImage(img, 20, 45, 370, 400);
+    context.drawImage(img, 20, 45, 185, 200);
     
     const emoteImg = await Canvas.loadImage(emote);
-    context.drawImage(emoteImg, 390, 50);
+    context.drawImage(emoteImg, 205, 50);
     
     context.textAlign = 'left'
     context.fillStyle = 'black'
-    context.font = `${scale <= .5 ? scale*2 : scale}rem Bungee`;
+    let fontSize = scale <= .5 ? 2 * scale : .8 * scale;
+    context.font = `${fontSize}rem Bungee`;
     context.fillText("BLANK Humanity", 10, 25 )
     
-    context.font = `italic ${scale <= .5 ? scale*2 : scale}rem Fira Code`;
+    context.font = `italic ${fontSize}rem Fira Code`;
     context.textAlign = 'center'
-    context.fillText(caption, 270, 470);
+    context.fillText(caption, 175, 270);
     
     const blankImg = await Canvas.loadImage(blankImage);
     context.drawImage(blankImg, context.canvas.width-40, 0);
