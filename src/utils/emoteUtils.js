@@ -81,7 +81,7 @@ async function drawEmote(context, initializer, emote, caption, blankImage, scale
     
     context.textAlign = 'left'
     context.fillStyle = 'black'
-    let fontSize = scale <= .5 ? 2 * scale : .8 * scale;
+    let fontSize = scale <= .5 ? 1.5 * scale : .8 * scale;
     context.font = `${fontSize}rem Bungee`;
     context.fillText("BLANK Humanity", 10, 25 )
     
@@ -90,7 +90,7 @@ async function drawEmote(context, initializer, emote, caption, blankImage, scale
     context.fillText(caption, 175, 270);
     
     const blankImg = await Canvas.loadImage(blankImage);
-    context.drawImage(blankImg, context.canvas.width-40, 0);
+    context.drawImage(blankImg, context.canvas.width, 0);
 }
 
 export default {
