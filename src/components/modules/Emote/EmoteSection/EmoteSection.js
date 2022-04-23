@@ -25,8 +25,8 @@ export default function Emote(props) {
           {emotes.map((entry, i) => {
             console.log(`Initializer ${initializer} emotes ${entry.emote}`)
             return (
-                <InnerSection key={entry.emote} width='400px' style={{margin: "1rem"}}>
-                  <img src={`/api/emote/${tokenId}/${entry.emote}/med`} width="400px"/>
+                <InnerSection key={entry.emote} width='504px' style={{margin: "1rem"}}>
+                  <img src={`/api/emote/${tokenId}/${entry.emote}/med`} width="504px"/>
                   <a style={{display:"block", fontSize:"small"}} href={`/api/emote/${tokenId}/${entry.emote}/med`} download={`${tokenId}-${entry.emote}.png`}>Download {entry.emote}</a>
                 </InnerSection>
               );

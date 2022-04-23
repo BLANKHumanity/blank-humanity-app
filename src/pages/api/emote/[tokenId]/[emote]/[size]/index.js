@@ -20,7 +20,7 @@ const createEmote = async (
   registerFont('public/Bungee-Regular.ttf', { family: 'Bungee' });
   registerFont('public/FiraCode-Regular.ttf', { family: 'Fira Code' });
 
-  const WIDTH = 1080 * scale;
+  const WIDTH = 1008 * scale;
   const HEIGHT = 500 * scale;
   const DX = 0
   const DY = 0

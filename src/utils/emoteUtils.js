@@ -110,7 +110,7 @@ async function drawEmote(context, initializer, emote, caption, blankImage, scale
     context.fillStyle = 'white'
     let fontSize = scale <= .5 ? 1.5 * scale : .8 * scale;
     context.font = `1.5rem Bungee`;
-    context.fillText(caption, 320, 465 )
+    context.fillText(caption, 320, 470 )
     console.log(emote)
     if(['lovesThis', 'sendLove', 'sendsLove', 'CUP', 'isAWinner', 'earth', 'Puzzle'].indexOf(emote) >= 0) {
         const emoteImg = await Canvas.loadImage(`public/${generateEmoteImage(emote)}`);
