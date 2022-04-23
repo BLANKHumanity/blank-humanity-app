@@ -1,6 +1,13 @@
 import initializerMetadata from "./initializers-metadata-lookup.json";
 import Canvas from 'canvas'
 
+const sendsLove = ['0','313', '355', '137', '66', '730','373','790','642', '868', '34', '556', '196']
+const lovesThis = ['0', '355', '626', '335', '137', '66', '730','373','790','642', '868', '34', '556', '196', '313']
+const cupWinners = ['248', '46', '757', '868', '475', '407', '556', '184', '758', '184', '758', '421', '313']
+const buyMe = ['466','566','47', '634', '724','217', '88', '96', '641', '484']
+const GL = ['0','355','313','143']
+const NICE = ['0','355','313','143', '493']
+const puzzleSolvers = ['11','62','342','192','248','66']
 function generateCaption(initializer, emote) {
     let caption = "";
     switch(emote) {
@@ -32,15 +39,6 @@ function generateEmoteImage(emote) {
     return `${emoji}.png`
 }
 function validEmoteForToken(tokenId, emote) {
-    let sendsLove = ['0','313', '355', '137', '66', '730','373','790','642', '868', '34', '556', '196']
-    let lovesThis = ['0', '355', '626', '335', '137', '66', '730','373','790','642', '868', '34', '556', '196', '313']
-    let cupWinners = ['248', '46', '757', '868', '475', '407', '556', '184', '758', '184', '758', '421', '313']
-    let buyMe = ['466','566','47', '634', '724','217', '88', '96', '641', '484']
-    let GL = ['0','355','313','143']
-    let NICE = ['0','355','313','143', '493']
-    let puzzleSolvers = ['11','62','342','192','248','66']
-
-
     switch(emote) {
         case 'sendLove': return sendsLove.indexOf(tokenId) >= 0;
         case 'lovesThis': return lovesThis.indexOf(tokenId) >= 0;
@@ -56,14 +54,6 @@ function validEmoteForToken(tokenId, emote) {
     }
 }
 function getEmotesForInitializer(tokenId, emote) {
-    let sendsLove = ['0','313', '355', '137', '66', '730','373','790','642', '868', '34', '556', '196']
-    let lovesThis = ['0', '355', '626', '335', '137', '66', '730','373','790','642', '868', '34', '556', '196', '313']
-    let cupWinners = ['248', '46', '757', '868', '475', '407', '556', '184', '758', '184', '758', '421', '313']
-    let buyMe = ['466','566','47', '634', '724','217', '88', '96', '641', '484']
-    let GL = ['0','355','313','143']
-    let NICE = ['0','355','313','143', '493']
-    let puzzleSolvers = ['11','62','342','192','248','66']
-
     if(tokenId == -1) {
         return [];
     }
