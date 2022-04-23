@@ -9,36 +9,42 @@ const GL = ['0','355','313','143']
 const NICE = ['0','355','313','143', '493']
 const puzzleSolvers = ['11','62','342','192','248','66']
 
+const captions = {
+    "GL":'wishes you luck',
+    "GM":'says Good Morning',
+    "GN":'says Good Night',
+    "NICE":'says NICE',
+    "WOW":'is amazed',
+    "TY":'is grateful',
+    "lovesThis":'loves this',
+    "sendLove":'sends love',
+    "isAWinner":'is a winner',
+    "buyMe":'says "Buy me on OpenSea"',
+    "WAGMI":'insists We\'re All Gonna Make It',
+    "earth":'says Happy Earth Day',
+    "Puzzle":'can solve it'
+}
+
+const emoteImages = {
+    "earth": 'heart.png',
+    "lovesThis": 'heart.png',
+    "sendLove": 'heart.png',
+    "buyMe": 'MONEY.png',
+    "isAWinner": 'CUP.png'
+}
+
 function generateCaption(initializer, emote) {
-    let caption = "";
-    switch(emote) {
-        case "GL": caption = 'wishes you luck'; break;
-        case "GL": caption = 'says NICE'; break;
-        case "WOW": caption = 'is amazed'; break;        
-        case "TY": caption = 'is grateful'; break;
-        case "lovesThis": caption = 'loves this'; break;
-        case "sendLove": caption = 'sends love'; break;
-        case "isAWinner": caption = 'is a winner'; break;
-        case "buyMe": caption = 'says "Buy me on OpenSea"'; break;
-        case "WAGMI": caption = 'insists We\'re All Gonna Make It'; break;
-        case "earth": caption = 'says Happy Earth Day'; break;
-        case "Puzzle": caption = 'can solve it'; break;
-        default: caption = `says "${emote}"`
-    }
-    return `Initializer #${initializer} ${caption}`;
+    return `Initializer #${initializer} ${captions[emote]}`;
 }
+
 function generateEmoteImage(emote) {
-    let emoji = "/";
-    switch(emote) {
-        case "earth": emoji += 'heart'; break;
-        case "lovesThis": emoji += 'heart'; break; 
-        case "sendLove": emoji += 'heart'; break;
-        case "buyMe": emoji += 'MONEY'; break;
-        case "isAWinner": emoji += 'CUP'; break;
-        default: emoji += emote
+    console.log(`${Object.keys(emoteImages).indexOf(emote)}`)
+    if(Object.keys(emoteImages).indexOf(emote) > -1) {
+        return emoteImages[emote]
     }
-    return `${emoji}.png`
+    return "";
 }
+
 function validEmoteForToken(tokenId, emote) {
     switch(emote) {
         case 'sendLove': return sendsLove.indexOf(tokenId) >= 0;
@@ -85,6 +91,7 @@ function getEmotesForInitializer(tokenId, emote) {
     }
     return emotes;
 }
+
 function getInitializerTrait(initializer, trait) {
     let traitReturn = ""
     initializerMetadata[initializer][0].traits.map((metaTrait)=>{
@@ -110,23 +117,25 @@ async function drawEmote(context, initializer, emote, caption, blankImage, scale
     context.fillStyle = 'white'
     let fontSize = scale <= .5 ? 1.5 * scale : .8 * scale;
     context.font = `1.5rem Bungee`;
-    context.fillText(caption, 320, 470 )
+    context.fillText(caption, 320, 475 )
     console.log(emote)
-    if(['lovesThis', 'sendLove', 'sendsLove', 'CUP', 'isAWinner', 'earth', 'Puzzle'].indexOf(emote) >= 0) {
+    if(Object.keys(emoteImages).indexOf(emote) >= 0) {
         const emoteImg = await Canvas.loadImage(`public/${generateEmoteImage(emote)}`);
         context.drawImage(emoteImg, 675, 50, 150, 150);
     } else {
-        context.fillStyle = 'black'
-        
+        context.textAlign = 'center'
+        context.fillStyle = 'black'        
+        //center of speech bubble: 760, 112
         if(emote.length == 2) {
             context.font = `5rem Bungee`;
-            context.fillText(emote, 650, 160)
+            context.fillText(emote, 760, 152)
         } else {
             context.font = `4rem Bungee`;
-            context.fillText(emote, 635, 150)
+            context.fillText(emote, 760, 144)
         }
     }
 }
+
 function colorLookup(color) {
     const colorNameMapping = {
         "White": "#ffffff",
