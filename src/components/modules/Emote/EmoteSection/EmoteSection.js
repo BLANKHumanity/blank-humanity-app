@@ -21,12 +21,12 @@ export default function Emote(props) {
   return (  
     <div className="Emote">
       <ContentSection width="75%" style={{minHeight:"80vh", display:"flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center", alignItems:"center"}}>
-        <h1 style={{flexBasis:"100%"}}>Initializer #{initializer} Emotes</h1>
+        <h2 style={{flexBasis:"100%"}}>Initializer #{initializer} Emotes</h2>
           {emotes.map((entry, i) => {
             console.log(`Initializer ${initializer} emotes ${entry.emote}`)
             return (
-                <InnerSection key={entry.emote} width='1080px' style={{margin: "1rem"}}>
-                  <img src={`/api/emote/${tokenId}/${entry.emote}/med`} />
+                <InnerSection key={entry.emote} width='400px' style={{margin: "1rem"}}>
+                  <img src={`/api/emote/${tokenId}/${entry.emote}/med`} width="400px"/>
                   <a style={{display:"block", fontSize:"small"}} href={`/api/emote/${tokenId}/${entry.emote}/med`} download={`${tokenId}-${entry.emote}.png`}>Download {entry.emote}</a>
                 </InnerSection>
               );

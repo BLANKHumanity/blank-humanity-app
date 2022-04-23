@@ -8,6 +8,7 @@ const buyMe = ['466','566','47', '634', '724','217', '88', '96', '641', '484']
 const GL = ['0','355','313','143']
 const NICE = ['0','355','313','143', '493']
 const puzzleSolvers = ['11','62','342','192','248','66']
+
 function generateCaption(initializer, emote) {
     let caption = "";
     switch(emote) {
@@ -108,7 +109,7 @@ async function drawEmote(context, initializer, emote, caption, blankImage, scale
     context.textAlign = 'left'
     context.fillStyle = 'white'
     let fontSize = scale <= .5 ? 1.5 * scale : .8 * scale;
-    context.font = `1rem Bungee`;
+    context.font = `1.5rem Bungee`;
     context.fillText(caption, 320, 465 )
     console.log(emote)
     if(['lovesThis', 'sendLove', 'sendsLove', 'CUP', 'isAWinner', 'earth', 'Puzzle'].indexOf(emote) >= 0) {
