@@ -3,8 +3,6 @@ import { useRouter } from 'next/router'
 import ContentSection from "../../../common/ContentSection/ContentSection";
 import InnerSection from "../../../common/InnerSection/InnerSection";
 import Footer from "../../../common/Footer/Footer";
-import Dropdown from "../../../common/Dropdown/Dropdown";
-import Canvas from "../../../common/Canvas/Canvas";
 import emoteUtils from "../../../../utils/emoteUtils";
 
 export default function Emote(props) {
@@ -12,7 +10,6 @@ export default function Emote(props) {
   let { tokenId, emote } = router.query
   
   let initializer = -1;
-  let justTheEmote = emote && emoteUtils.validEmoteForToken(tokenId, emote);
 
   if( parseInt(tokenId) >= 0 ) { initializer = tokenId; }  
   if( emote && !emoteUtils.validEmoteForToken(tokenId, emote) ) { router.push(`/Emote/${tokenId}`); }
@@ -28,7 +25,7 @@ export default function Emote(props) {
           {emotes.map((entry, i) => {
             console.log(`Initializer ${initializer} emotes ${entry.emote}`)
             return (
-                <InnerSection key={entry.emote} width='540px' style={{margin: "1rem"}}>
+                <InnerSection key={entry.emote} width='1080px' style={{margin: "1rem"}}>
                   <img src={`/api/emote/${tokenId}/${entry.emote}/med`} />
                   <a style={{display:"block", fontSize:"small"}} href={`/api/emote/${tokenId}/${entry.emote}/med`} download={`${tokenId}-${entry.emote}.png`}>Download {entry.emote}</a>
                 </InnerSection>

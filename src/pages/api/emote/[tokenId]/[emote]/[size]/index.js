@@ -8,10 +8,10 @@ const createEmote = async (
   let { tokenId, emote, size } = req.query
   let scale = 1;
   switch(size) {
-    case "sm": scale = .5; break;
-    case "small": scale = .5; break;
-    case "med": scale = .8; break;
-    case "medium": scale = .8; break;
+    case "sm": scale = 1; break;
+    case "small": scale = 1; break;
+    case "med": scale = 1; break;
+    case "medium": scale = 1; break;
     case "lg": scale = 1; break;
     case "large": scale = 1; break;
   }
@@ -20,16 +20,15 @@ const createEmote = async (
   registerFont('public/Bungee-Regular.ttf', { family: 'Bungee' });
   registerFont('public/FiraCode-Regular.ttf', { family: 'Fira Code' });
 
-  const WIDTH = 350 * scale;
-  const HEIGHT = 300 * scale;
+  const WIDTH = 1080 * scale;
+  const HEIGHT = 500 * scale;
   const DX = 0
   const DY = 0
   const canvas = createCanvas(WIDTH, HEIGHT);
   const context = canvas.getContext("2d");
-  let img = 'public'+emoteUtils.generateEmoteImage(emote)
   console.log(tokenId)
-  console.log(img)
-  await emoteUtils.drawEmote(context, tokenId, img, emoteUtils.generateCaption(tokenId, emote), 'public/BLANK.png', scale)
+  console.log(emote)
+  await emoteUtils.drawEmote(context, tokenId, emote, emoteUtils.generateCaption(tokenId, emote), 'public/BLANK.png', scale)
 
   const buffer = canvas.toBuffer();
 
