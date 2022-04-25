@@ -116,7 +116,7 @@ async function drawEmote(context, initializer, emote, caption, blankImage, scale
     context.textAlign = 'left'
     context.fillStyle = 'white'
     let fontSize = scale <= .5 ? 1.5 * scale : .8 * scale;
-    context.font = `1.5rem Bungee`;
+    context.font = `22pt Bungee`;
     context.fillText(caption, 320, 475 )
     console.log(emote)
     if(Object.keys(emoteImages).indexOf(emote) >= 0) {
@@ -168,6 +168,7 @@ async function drawInitializer(
     );
     let offscreenCtx = offscreenCanvas.getContext("2d");
     offscreenCtx.imageSmoothingEnabled = false;
+    let angle = Math.PI / 23;
 
     offscreenCtx.filter = "contrast(100) grayscale(100)";
     offscreenCtx.drawImage(initializerImage, 0, 0);
