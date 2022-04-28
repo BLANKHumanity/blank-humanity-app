@@ -108,7 +108,7 @@ async function drawEmote(context, initializer, emote, caption, blankImage, scale
 
     const baseImg = await Canvas.loadImage(`public/emote-template--${initializerBackground.toLowerCase()}.png`)    
     context.drawImage(baseImg, 0, 0);
-    drawInitializer(img, context, initializerColor, 215, 135);
+    drawInitializer(img, context, initializerColor, 190, 135);
     
     context.textAlign = 'left'
     context.fillStyle = 'white'
