@@ -124,10 +124,10 @@ async function drawEmote(context, initializer, emote, caption, blankImage, scale
         //center of speech bubble: 760, 112
         if(emote.length == 2) {
             context.font = `5rem Bungee`;
-            context.fillText(emote, 760, 152)
+            context.fillText(emote, 710, 152)
         } else {
             context.font = `4rem Bungee`;
-            context.fillText(emote, 760, 144)
+            context.fillText(emote, 710, 144)
         }
     }
 }
