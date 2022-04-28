@@ -26,8 +26,7 @@ const createEmote = async (
   const DY = 0
   const canvas = createCanvas(WIDTH, HEIGHT);
   const context = canvas.getContext("2d");
-  console.log(tokenId)
-  console.log(emote)
+  
   await emoteUtils.drawEmote(context, tokenId, emote, emoteUtils.generateCaption(tokenId, emote), 'public/BLANK.png', scale)
 
   const buffer = canvas.toBuffer();

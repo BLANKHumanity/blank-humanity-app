@@ -5,8 +5,8 @@ const sendsLove = ['0','313', '355', '137', '66', '730','373','790','642', '868'
 const lovesThis = ['0', '355', '626', '335', '137', '66', '730','373','790','642', '868', '34', '556', '196', '313']
 const cupWinners = ['248', '46', '757', '868', '475', '407', '556', '184', '758', '184', '758', '421', '313']
 const buyMe = ['466','566','47', '634', '724','217', '88', '96', '641', '484']
-const GL = ['0','355','313','143']
-const NICE = ['0','355','313','143', '493']
+const GL = ['0','355','313','143', '66', '868', '34']
+const NICE = ['0','355','313','143', '493', '66', '868', '34']
 const puzzleSolvers = ['11','62','342','192','248','66']
 
 const captions = {
@@ -38,7 +38,6 @@ function generateCaption(initializer, emote) {
 }
 
 function generateEmoteImage(emote) {
-    console.log(`${Object.keys(emoteImages).indexOf(emote)}`)
     if(Object.keys(emoteImages).indexOf(emote) > -1) {
         return emoteImages[emote]
     }
@@ -106,8 +105,6 @@ async function drawEmote(context, initializer, emote, caption, blankImage, scale
     const img = await Canvas.loadImage(initializerMetadata[initializer][0].imageData);    
     const initializerColor = colorLookup(getInitializerTrait(initializer, "Color"));
     const initializerBackground = getInitializerTrait(initializer, "Background");
-    console.log(`color: ${initializerColor}`);
-    console.log(`background: ${initializerBackground}`);
 
     const baseImg = await Canvas.loadImage(`public/emote-template--${initializerBackground.toLowerCase()}.png`)    
     context.drawImage(baseImg, 0, 0);
@@ -118,7 +115,6 @@ async function drawEmote(context, initializer, emote, caption, blankImage, scale
     let fontSize = scale <= .5 ? 1.5 * scale : .8 * scale;
     context.font = `22pt Bungee`;
     context.fillText(caption, 320, 475 )
-    console.log(emote)
     if(Object.keys(emoteImages).indexOf(emote) >= 0) {
         const emoteImg = await Canvas.loadImage(`public/${generateEmoteImage(emote)}`);
         context.drawImage(emoteImg, 675, 50, 150, 150);

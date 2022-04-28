@@ -22,8 +22,7 @@ export default function Emote(props) {
     <div className="Emote">
       <ContentSection width="75%" style={{minHeight:"80vh", display:"flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center", alignItems:"center"}}>
         <h2 style={{flexBasis:"100%"}}>Initializer #{initializer} Emotes</h2>
-          {emotes.map((entry, i) => {
-            console.log(`Initializer ${initializer} emotes ${entry.emote}`)
+          {emotes.map((entry, i) => {            
             return (
                 <InnerSection key={entry.emote} width='504px' style={{margin: "1rem"}}>
                   <img src={`/api/emote/${tokenId}/${entry.emote}/med`} width="504px"/>

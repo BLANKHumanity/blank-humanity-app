@@ -62,11 +62,11 @@ function useWalletData() {
         if (err) {
           console.log(err);
         } else {
-          console.log(web3.utils.fromWei(result, "ether") + " ETH");
+          //console.log(web3.utils.fromWei(result, "ether") + " ETH");
         }
       });
 
-      console.log(InitializerCollection);
+      //console.log(InitializerCollection);
 
       // Get the contract contract.
       const networkId = await web3.eth.net.getId();
@@ -148,7 +148,7 @@ function useWalletData() {
       updates.forEach((entry) => {
         let tokenId = parseInt(entry.type.substring(1));
         let tokenOwner = entry.value;
-        console.log(tokenId, tokenOwner);
+        //console.log(tokenId, tokenOwner);
         if (tokenOwner == accounts[0]) {
           tokenIds.push(tokenId);
         }
