@@ -117,7 +117,7 @@ async function drawEmote(context, initializer, emote, caption, blankImage, scale
     context.fillText(caption, 320, 475 )
     if(Object.keys(emoteImages).indexOf(emote) >= 0) {
         const emoteImg = await Canvas.loadImage(`public/${generateEmoteImage(emote)}`);
-        context.drawImage(emoteImg, 675, 50, 150, 150);
+        context.drawImage(emoteImg, 630, 50, 150, 150);
     } else {
         context.textAlign = 'center'
         context.fillStyle = 'black'        
