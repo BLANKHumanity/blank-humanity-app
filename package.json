@@ -2,6 +2,9 @@
   "name": "react",
   "version": "1.0.0",
   "description": "BLANK_humanity",
+  "engines": {
+    "node": "16.10.0"
+  },
   "keywords": [
     "react",
     "starter"
