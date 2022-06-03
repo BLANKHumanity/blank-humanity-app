@@ -1,17 +1,17 @@
 import React from "react";
 import * as tf from '@tensorflow/tfjs';
 
-import Footer from "../components/common/Footer/Footer.js";
+import Footer from "../../components/common/Footer/Footer.js";
 import { input } from "@tensorflow/tfjs";
 
-import nftCollectionData from "../content/blanket/nftCollectionData.js";
+import nftCollectionData from "../../content/blanket/nftCollectionData.js";
 
-import BlanketDragZone from "../components/common/BlanketDragZone/BlanketDragZone.js";
-import BlanketLoadImageButton from "../components/common/BlanketLoadImageButton/BlanketLoadImageButton.js";
-import NftDetailBox from "../components/modules/NftDetailBox/NftDetailBox.js";
+import BlanketDragZone from "../../components/common/BlanketDragZone/BlanketDragZone.js";
+import BlanketLoadImageButton from "../../components/common/BlanketLoadImageButton/BlanketLoadImageButton.js";
+import NftDetailBox from "../../components/modules/NFTDetailBox/NFTDetailBox.js";
 
-import loadingAnimationImage from "../images/loading-animation.gif";
-import dragDropIcon from "../images/drag-drop-icon.png";
+import loadingAnimationImage from "../../images/loading-animation.gif";
+import dragDropIcon from "../../images/drag-drop-icon.png";
 
 console.log("DRAG DROP ICON");
 console.log(dragDropIcon);
