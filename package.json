@@ -23,7 +23,7 @@
     "constate": "^3.3.0",
     "ethereumjs-util": "^7.1.4",
     "ethereumjs-utils": "^5.2.5",
-    "image-manipulation": "^0.0.4",
+    "image-manipulation": "0.0.4",
     "keccak256": "^1.0.6",
     "merkletreejs": "^0.2.27",
     "next": "^11.1.3",
