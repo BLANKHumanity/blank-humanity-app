@@ -8,6 +8,7 @@ const buyMe = ['466','566','47', '634', '724','217', '88', '96', '641', '484']
 const GL = ['0','355','313','143', '66', '868', '34']
 const NICE = ['0','355','313','143', '493', '66', '868', '34']
 const puzzleSolvers = ['11','62','342','192','248','66']
+const believers = ['0','66']
 
 const captions = {
     "GL":'wishes you luck',
@@ -22,7 +23,8 @@ const captions = {
     "buyMe":'says "Buy me on OpenSea"',
     "WAGMI":'insists We\'re All Gonna Make It',
     "earth":'says Happy Earth Day',
-    "Puzzle":'can solve it'
+    "Puzzle":'can solve it',
+    "believes": 'believes in you'
 }
 
 const emoteImages = {
@@ -32,7 +34,16 @@ const emoteImages = {
     "buyMe": 'MONEY.png',
     "isAWinner": 'CUP.png'
 }
-
+const emoteText = {
+    "GL":'GL',
+    "GM":'GM',
+    "GN":'GN',
+    "NICE":'NICE',
+    "WOW":'WOW',
+    "TY":'TY',
+    "WAGMI":'WAGMI',
+    "believes": '+1',
+}
 function generateCaption(initializer, emote) {
     return `Initializer #${initializer} ${captions[emote]}`;
 }
@@ -49,6 +60,7 @@ function validEmoteForToken(tokenId, emote) {
         case 'sendLove': return sendsLove.indexOf(tokenId) >= 0;
         case 'lovesThis': return lovesThis.indexOf(tokenId) >= 0;
         case 'isAWinner': return cupWinners.indexOf(tokenId) >= 0;
+        case 'believes': return believers.indexOf(tokenId) >= 0;
         case 'buyMe': return buyMe.indexOf(tokenId) >= 0;
         case 'GL': return GL.indexOf(tokenId) >= 0;
         case 'NICE': return NICE.indexOf(tokenId) >= 0;
@@ -85,6 +97,9 @@ function getEmotesForInitializer(tokenId, emote) {
     if(puzzleSolvers.indexOf(tokenId) > -1) {
         emotes.push({emote:'Puzzle', emoteImg: generateEmoteImage('Puzzle'), caption: generateCaption(tokenId, 'Puzzle')})
     }
+    if(believers.indexOf(tokenId) > -1) {
+        emotes.push({emote:'believes', emoteImg: generateEmoteImage('believes'), caption: generateCaption(tokenId, 'believes')})
+    }
     if(tokenId == 900) {
         emotes.push({emote:'earth', emoteImg: generateEmoteImage('earth'), caption: generateCaption(tokenId, 'earth')})
     }
@@ -119,15 +134,16 @@ async function drawEmote(context, initializer, emote, caption, blankImage, scale
         const emoteImg = await Canvas.loadImage(`public/${generateEmoteImage(emote)}`);
         context.drawImage(emoteImg, 630, 50, 150, 150);
     } else {
+        let speechBubble = emoteText[emote]
         context.textAlign = 'center'
         context.fillStyle = 'black'        
         //center of speech bubble: 760, 112
-        if(emote.length == 2) {
+        if(speechBubble.length == 2) {
             context.font = `5rem Bungee`;
-            context.fillText(emote, 710, 152)
+            context.fillText(speechBubble, 710, 152)
         } else {
             context.font = `4rem Bungee`;
-            context.fillText(emote, 710, 144)
+            context.fillText(speechBubble, 710, 144)
         }
     }
 }

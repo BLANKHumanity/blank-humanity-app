@@ -7,8 +7,8 @@ import WalletConnector from "../components/common/WalletConnector/WalletConnecto
 import Footer from "../components/common/Footer/Footer.js";
 
 import HeroSection from "../components/modules/Home/HeroSection/HeroSection.js";
-import MintInitializerSection from "../components/modules/Home/MintInitializerSection/MintInitializerSection.js";
 import MyInitializersSection from "../components/modules/Home/MyInitializersSection/MyInitializersSection.js";
+import MyInventorySection from "../components/modules/Home/MyInventorySection/MyInventorySection.js";
 
 export default function Home(props) {
 
@@ -59,7 +59,7 @@ export default function Home(props) {
       <HeroSection />
       {walletData?.accounts?.length ? (
         <>
-          <MintInitializerSection />
+          <MyInventorySection />
           {walletData.tokens?.length > 0 ? (
             <MyInitializersSection />
           ) : (

@@ -16,7 +16,7 @@ export default function Verify(props) {
         <div className="Verify">
         <ContentSection width="75%" style={{minHeight:"80vh", display:"flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center", alignItems:"center"}}>
             <h1 style={{flexBasis:"100%"}}>Verify your wallet</h1>
-            <p>Connect your wallet with Metamask and sign the message to validate your discord/wallet connection.</p>
+            <p>Connect your wallet with Metamask (on the Ethereum Main Network) and sign the message to validate your discord/wallet connection.</p>
             <p>Once you've completed this, you'll have access to extra features in the BLANK Humanity discord server.</p>
             {walletData && walletData.accounts.length ? (
             <SignMessageButton message={message} accounts={walletData?.accounts} salt={salt} web3={walletData.web3}/>

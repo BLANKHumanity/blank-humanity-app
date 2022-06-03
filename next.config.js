@@ -1,5 +1,11 @@
 module.exports = {
-    async redirects() {
+  webpack: (config) => {
+    // this will override the experiments
+    config.experiments = { topLevelAwait: true };
+    // this will just update topLevelAwait property of config.experiments
+    // config.experiments.topLevelAwait = true 
+    return config;
+  },async redirects() {
       return [
         {
           source: '/Emote/:tokenId/:emote',

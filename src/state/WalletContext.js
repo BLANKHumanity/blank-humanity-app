@@ -1,7 +1,7 @@
 import React from "react";
 import constate from "constate"; // State Context Object Creator
 import { createWatcher } from "@makerdao/multicall";
-
+import Web3Token from 'web3-token';
 import InitializerCollection from "../contracts/Initializers.json";
 import getWeb3 from "../utils/getWeb3";
 
@@ -42,6 +42,7 @@ function useWalletData() {
   const [collectibleContract, setCollectibleContract] = React.useState();
   const [tokens, setTokens] = React.useState();
   const [web3, setWeb3] = React.useState();
+  const [web3Token, setWeb3Token] = React.useState();
   const [accounts, setAccounts] = React.useState([]);
   const [price, setPrice] = React.useState();
   const [
@@ -81,6 +82,9 @@ function useWalletData() {
       setAccounts(accounts);
       setCollectibleContract(contract);
 
+      // generating a token with 1 day of expiration time
+      const token = await Web3Token.sign(msg => web3.eth.personal.sign(msg, accounts[0]), '1d');
+      setWeb3Token(token);
       const price = await contract.methods.price().call();
       setPrice(price);
 
@@ -165,7 +169,7 @@ function useWalletData() {
   };
 
   React.useEffect(() => {
-      if (web3 && tokens && accounts.length && collectibleContract) {
+      if (web3 && tokens && accounts.length && collectibleContract && web3Token) {
         updateWalletData();
       }
   }, [web3,tokens,accounts,collectibleContract]);
@@ -175,7 +179,8 @@ function useWalletData() {
       web3: web3,
       tokens: tokens,
       accounts: accounts,
-      collectibleContract: collectibleContract
+      collectibleContract: collectibleContract,
+      web3Token: web3Token
     });
   }
 
