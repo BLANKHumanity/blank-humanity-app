@@ -29,7 +29,7 @@ function TitleArea(props) {
       }}
     >
       <div style={{ width: "50%", textAlign: "left" }}>
-        <span style={{ fontFamily: "Bungee" }}>NFT EXPLORER [DEMO]</span>
+        <span style={{ fontFamily: "Bungee" }}>Blanket Search</span>
         <br />
         Drag an Initializer NFT here to interact with it!
         <br />
