@@ -49,6 +49,7 @@ export default function SignMessageButton({
                           signature: signature, 
                           address:accounts[0],
                           tokenName: message.tokenName || "",
+                          tokenNotes: message.tokenNotes || "",
                           tokenPhrase: message.tokenPhrase || ""
                       }),
                   }).then(res => {

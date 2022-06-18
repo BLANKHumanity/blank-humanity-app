@@ -148,10 +148,12 @@ export default function BlanketSearch(props) {
       .then(profile => {
         let name = "Initializer #"+nftID;
         let phrase = "This is "+name;
+        let notes = "No notes.";
         
         if(profile && profile.length) {          
           name = profile[0].nft_token_name;
-          phrase = profile[0].nft_token_description;
+          phrase = profile[0].nft_token_phrase;
+          notes = profile[0].nft_token_notes;
         }                    
         setContentComponent(<div>
           <NftDetailBox

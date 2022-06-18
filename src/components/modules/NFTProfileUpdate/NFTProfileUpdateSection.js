@@ -10,6 +10,7 @@ export default function NFTProfileUpdateSection(props) {
     const {walletData, connectWallet, setWalletData} = useWalletDataContext();
     const [tokenName, setTokenName] = React.useState(" ");
     const [tokenPhrase, setTokenPhrase] = React.useState(" ");
+    const [tokenNotes, setTokenNotes] = React.useState(" ");
     
     const handleNameInput = event => {
         setTokenName(event.target.value);        
@@ -17,14 +18,16 @@ export default function NFTProfileUpdateSection(props) {
     const handlePhraseInput = event => {
         setTokenPhrase(event.target.value);
     };
+    const handleNotesInput = event => {
+        setTokenNotes(event.target.value);
+    };
 
-    let tokenProfile = {contractId:props.contractId,tokenId:props.tokenId,tokenName:tokenName,tokenPhrase:tokenPhrase};
+    let tokenProfile = {contractId:props.contractId,tokenId:props.tokenId,tokenName:tokenName,tokenPhrase:tokenPhrase, tokenNotes:tokenNotes};
     return (  
         <div className="InitializerProfile">
         {walletData?.tokens && walletData.collectibleContract
             ? walletData?.tokens?.length == 0
             ? <div>Is this your NFT? Connect your wallet to enable editing of the Name and Phrase used here when your NFT is scanned. <WalletConnector /></div>
-                          
             : walletData.tokens?.map((entry, i) => {
                 if(entry == props.tokenId) {  
                     return (
@@ -36,6 +39,9 @@ export default function NFTProfileUpdateSection(props) {
                                 </div>
                                 <div>
                                     <label>Phrase:</label><input type="text" onChange={handlePhraseInput} />
+                                </div>
+                                <div>
+                                    <label>Notes:</label><input type="text" onChange={handleNotesInput} />
                                 </div>
                             {walletData && walletData.accounts.length ? (
                             <div><SignMessageButton message={tokenProfile} accounts={walletData?.accounts} salt={salt} web3={walletData.web3} api="profile"/></div>
