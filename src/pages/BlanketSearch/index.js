@@ -9,6 +9,7 @@ import nftCollectionData from "../../content/blanket/nftCollectionData.js";
 import BlanketDragZone from "../../components/common/BlanketDragZone/BlanketDragZone.js";
 import BlanketLoadImageButton from "../../components/common/BlanketLoadImageButton/BlanketLoadImageButton.js";
 import NftDetailBox from "../../components/modules/NFTDetailBox/NFTDetailBox.js";
+import NFTProfileUpdateSection from "../../components/modules/NFTProfileUpdate/NFTProfileUpdateSection.js";
 
 import loadingAnimationImage from "../../images/loading-animation.gif";
 import dragDropIcon from "../../images/drag-drop-icon.png";
@@ -115,6 +116,9 @@ export default function BlanketSearch(props) {
   const [similarImagesComponent, setSimilarImagesComponent] = React.useState(
     <div></div>
   );
+  const [name, setName] = React.useState("");
+  const [phrase, setPhrase] = React.useState("");
+  const [notes, setNotes] = React.useState("No notes.");
 
   React.useEffect(() => {
     window.ondragenter = (e) => {
@@ -133,15 +137,23 @@ export default function BlanketSearch(props) {
     similarWeb3Assets
   ) {
     if (nftID) {
-      const collectionData = nftCollectionData[collectionAddress];
-      //const nftData = collectionData.entries[nftID];
-      if (1){//nftData) {
-        
+      const collectionData = nftCollectionData[collectionAddress];            
+      console.log(`fetching profile from /api/nft/${collectionAddress}/${nftID}/profile`)
+      fetch(`/api/nft/${collectionAddress}/${nftID}/profile`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'                          
+        }
+      }).then(res => res.json())
+      .then(profile => {
         let name = "Initializer #"+nftID;
         let phrase = "This is "+name;
-        let notes = "No notes";
-
-        setContentComponent(
+        
+        if(profile && profile.length) {          
+          name = profile[0].nft_token_name;
+          phrase = profile[0].nft_token_description;
+        }                    
+        setContentComponent(<div>
           <NftDetailBox
             id={nftID}
             collectionData={collectionData.collectionData}
@@ -150,20 +162,12 @@ export default function BlanketSearch(props) {
             phrase={phrase}
             notes={notes}
           />
-        );
-
-        
-        setSimilarImagesComponent(
-          <SimilarNFTsArea similarNFTs={similarWeb3Assets} />
-        );
-        
-        
-      } else {
-        alert("NO NFT DATA SET");
-        setContentComponent(
-          <div>Asset ID found. No associated data available.</div>
-        );
-      }
+          <NFTProfileUpdateSection contractId={collectionAddress} tokenId={nftID}/></div>
+        );                
+      });
+      setSimilarImagesComponent(
+        <SimilarNFTsArea similarNFTs={similarWeb3Assets} />
+      );                    
     } else {
       alert("ID NOT FOUND");
       setContentComponent(<div>Asset ID not found</div>);
@@ -179,7 +183,7 @@ export default function BlanketSearch(props) {
         <ContentArea displayedComponent={contentComponent} />
         <ContentArea displayedComponent={similarImagesComponent} />
       </div>
-      <BlanketLoadImageButton handleImageLoad={handleBlanketResponse} />
+      <BlanketLoadImageButton handleImageLoad={handleBlanketResponse} />      
       <Footer />
       <img id="test-image" />
     </div>

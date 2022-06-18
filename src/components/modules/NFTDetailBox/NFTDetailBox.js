@@ -114,6 +114,7 @@ export default function NftDetailBox({
                 width: "70%",
                 marginLeft: "auto",
                 marginRight: "0%",
+                paddingLeft: "10%",
                 textAlign: "left",
                 fontSize: "3rem",
                 display: "flex",
@@ -149,7 +150,7 @@ function TypewriterEffect(props) {
     setTimeout(() => {
       // Begin typing
       const interval = setInterval(() => {
-        if (characterIndex < initialText.length) {
+        if (initialText && characterIndex < initialText.length) {
           characterIndex++;
           setText(initialText.substring(0, characterIndex));
         } else {
