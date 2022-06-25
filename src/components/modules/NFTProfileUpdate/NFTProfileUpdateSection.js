@@ -1,6 +1,7 @@
 import React from "react"
 import { useRouter } from 'next/router'
 import ContentSection from "../../common/ContentSection/ContentSection";
+import WalletConnector from "../../common/WalletConnector/WalletConnector";
 import { useWalletDataContext } from "../../../state/WalletContext";
 import SignMessageButton from "../../common/SignMessageButton/SignMessageButton";
 
