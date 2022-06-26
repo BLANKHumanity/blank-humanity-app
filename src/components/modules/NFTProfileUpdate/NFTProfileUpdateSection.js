@@ -1,6 +1,7 @@
 import React from "react"
 import { useRouter } from 'next/router'
 import ContentSection from "../../common/ContentSection/ContentSection";
+import WalletConnector from "../../common/WalletConnector/WalletConnector";
 import { useWalletDataContext } from "../../../state/WalletContext";
 import SignMessageButton from "../../common/SignMessageButton/SignMessageButton";
 
@@ -32,7 +33,7 @@ export default function NFTProfileUpdateSection(props) {
                 if(entry == props.tokenId) {  
                     return (
                         <ContentSection width="75%" style={{minHeight:"30vh", display:"flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center", alignItems:"center"}}>            
-                            <p>It looks like you own this NFT, to set the name and phrase said here, fill out the following two boxes and sign the data. 
+                            <p>It looks like you own this NFT, to set the name, phrase, and notes, fill out the following info and sign the data. 
                             This will not incur any gas fees, simply validates your ownership.</p>
                                 <div>
                                     <label>Name:</label><input type="text" onChange={handleNameInput}/>
