@@ -30,7 +30,8 @@ const emoteImages = {
     "lovesThis": 'heart.png',
     "sendLove": 'heart.png',
     "buyMe": 'MONEY.png',
-    "isAWinner": 'CUP.png'
+    "isAWinner": 'CUP.png',
+    "Puzzle": 'Puzzle.png'
 }
 
 function generateCaption(initializer, emote) {
@@ -45,46 +46,20 @@ function generateEmoteImage(emote) {
 }
 
 function validEmoteForToken(tokenId, emote) {
-    switch(emote) {
-        case 'sendLove': return sendsLove.indexOf(tokenId) >= 0;
-        case 'lovesThis': return lovesThis.indexOf(tokenId) >= 0;
-        case 'isAWinner': return cupWinners.indexOf(tokenId) >= 0;
-        case 'buyMe': return buyMe.indexOf(tokenId) >= 0;
-        case 'GL': return GL.indexOf(tokenId) >= 0;
-        case 'NICE': return NICE.indexOf(tokenId) >= 0;
-        case 'Puzzle': return puzzleSolvers.indexOf(tokenId) >= 0;
-        case 'earth': return tokenId == 900;
-        case 'GM': 
-        case 'GN': return true;
-        default: return false;
-    }
+    return true;
 }
 function getEmotesForInitializer(tokenId, emote) {
     if(tokenId == -1) {
         return [];
     }
     let emotes = [{emote:'GM', emoteImg:generateEmoteImage('GM'), caption:generateCaption(tokenId, 'GM')}, {emote:'GN', emoteImg:generateEmoteImage('GN'), caption:generateCaption(tokenId, 'GN')}];
-    if(sendsLove.indexOf(tokenId) > -1) {
-        emotes.push({emote:'sendLove', emoteImg: generateEmoteImage('sendLove'), caption: generateCaption(tokenId, 'sendLove')})
-    } 
-    if(lovesThis.indexOf(tokenId) > -1) {
-        emotes.push({emote:'lovesThis', emoteImg: generateEmoteImage('lovesThis'), caption: generateCaption(tokenId, 'lovesThis')})
-    } 
-    if(cupWinners.indexOf(tokenId) > -1) {
-        emotes.push({emote:'isAWinner', emoteImg: generateEmoteImage('isAWinner'), caption: generateCaption(tokenId, 'isAWinner')})
-    } 
-    if(buyMe.indexOf(tokenId) > -1) {
-        emotes.push({emote:'buyMe', emoteImg: generateEmoteImage('buyMe'), caption: generateCaption(tokenId, 'buyMe')})
-    }
-    if(GL.indexOf(tokenId) > -1) {
-        emotes.push({emote:'GL', emoteImg: generateEmoteImage('GL'), caption: generateCaption(tokenId, 'GL')})
-    }
-    if(NICE.indexOf(tokenId) > -1) {
-        emotes.push({emote:'NICE', emoteImg: generateEmoteImage('NICE'), caption: generateCaption(tokenId, 'NICE')})
-    }
-    if(puzzleSolvers.indexOf(tokenId) > -1) {
-        emotes.push({emote:'Puzzle', emoteImg: generateEmoteImage('Puzzle'), caption: generateCaption(tokenId, 'Puzzle')})
-    }
+    emotes.push({emote:'sendLove', emoteImg: generateEmoteImage('sendLove'), caption: generateCaption(tokenId, 'sendLove')})
+    emotes.push({emote:'lovesThis', emoteImg: generateEmoteImage('lovesThis'), caption: generateCaption(tokenId, 'lovesThis')})
+    if(cupWinners.indexOf(tokenId) > -1)    emotes.push({emote:'isAWinner', emoteImg: generateEmoteImage('isAWinner'), caption: generateCaption(tokenId, 'isAWinner')})
+    //emotes.push({emote:'buyMe', emoteImg: generateEmoteImage('buyMe'), caption: generateCaption(tokenId, 'buyMe')})
+    emotes.push({emote:'GL', emoteImg: generateEmoteImage('GL'), caption: generateCaption(tokenId, 'GL')})
+    emotes.push({emote:'NICE', emoteImg: generateEmoteImage('NICE'), caption: generateCaption(tokenId, 'NICE')})
+    emotes.push({emote:'Puzzle', emoteImg: generateEmoteImage('Puzzle'), caption: generateCaption(tokenId, 'Puzzle')})
     if(tokenId == 900) {
         emotes.push({emote:'earth', emoteImg: generateEmoteImage('earth'), caption: generateCaption(tokenId, 'earth')})
     }
