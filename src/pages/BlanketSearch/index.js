@@ -151,9 +151,9 @@ export default function BlanketSearch(props) {
         let notes = "No notes.";
         
         if(profile && profile.length) {          
-          name = profile[0].nft_token_name;
-          phrase = profile[0].nft_token_phrase;
-          notes = profile[0].nft_token_notes;
+          name = decodeURIComponent(profile[0].nft_token_name);
+          phrase = decodeURIComponent(profile[0].nft_token_phrase);
+          notes = decodeURIComponent(profile[0].nft_token_notes);
         }                    
         setContentComponent(<div>
           <NftDetailBox

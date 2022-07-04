@@ -48,9 +48,9 @@ export default function SignMessageButton({
                           salt: salt, 
                           signature: signature, 
                           address:accounts[0],
-                          tokenName: message.tokenName || "",
-                          tokenNotes: message.tokenNotes || "",
-                          tokenPhrase: message.tokenPhrase || ""
+                          tokenName: encodeURIComponent(message.tokenName) || "",
+                          tokenNotes: encodeURIComponent(message.tokenNotes) || "",
+                          tokenPhrase: encodeURIComponent(message.tokenPhrase) || ""
                       }),
                   }).then(res => {
                     if(res.status == 200) {

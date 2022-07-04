@@ -3,6 +3,7 @@ const mysql = require('mysql2');
 const { Client } = require('ssh2');
 // create an instance of SSH Client
 const sshClient = new Client();
+const cache = require('memory-cache');
 
 // define connection config for the database
 const dbServer = {
@@ -26,7 +27,7 @@ const forwardConfig = {
     dstHost: dbServer.host, // destination database
     dstPort: dbServer.port // destination port
 };
-
+const tokenCache = [];
 const SSHConnection = new Promise((resolve, reject) => {
     try{
         sshClient.on('ready', () => {
@@ -54,4 +55,32 @@ const SSHConnection = new Promise((resolve, reject) => {
         reject(error);
     }
 });
-module.exports = {SSHConnection: SSHConnection};
+async function populateCache(contract) {
+    let dbConnection = await SSHConnection;  
+  
+    let query = `SELECT nft_token_id, nft_token_name  FROM \`blankbot\`.\`nft_token_metadata\` where \`nft_contract\`='${contract}'`;
+    console.log(query);
+    dbConnection.query(query, function (error, result, fields) {
+        if (error) {
+            console.log(`error: ${error}`)          
+        } else if(result.length) {            
+          for(let i = 0; i < result.length; ++i) {
+            cache.put(result[i].nft_token_id, decodeURIComponent(result[i].nft_token_name));
+          }          
+        } 
+    });
+  }
+async function getName (contract, tokenId) {
+    if(tokenId >= 0) {    
+        let name = cache.get(tokenId);
+        if(name)  return name;
+        else await populateCache(contract);
+        
+        name = cache.get(tokenId);
+        if(name) return name;
+        else return `Initializer # ${tokenId}`;   
+    } else {        
+        return null;
+    } 
+  }
+module.exports = {SSHConnection: SSHConnection, tokenCache: tokenCache, getName: getName};
