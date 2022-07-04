@@ -1,5 +1,5 @@
 import Web3Token from 'web3-token';
-import dbUtils from '../../../../../../utils/dbConfig';
+import dbUtils from '../../../../../../utils/dbUtils';
 
 const profile = async (
     req,
