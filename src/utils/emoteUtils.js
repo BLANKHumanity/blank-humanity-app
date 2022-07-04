@@ -34,8 +34,8 @@ const emoteImages = {
     "Puzzle": 'Puzzle.png'
 }
 
-function generateCaption(initializer, emote) {
-    return `Initializer #${initializer} ${captions[emote]}`;
+function generateCaption(initializerName, emote) {    
+    return `${initializerName} ${captions[emote]}`;
 }
 
 function generateEmoteImage(emote) {
@@ -45,8 +45,8 @@ function generateEmoteImage(emote) {
     return "";
 }
 
-function validEmoteForToken(tokenId, emote) {
-    return true;
+function validEmoteForToken(tokenId, emote) {    
+    return (emote=='isAWinner') ? isAWinner.indexOf(tokenId) > -1 : true;
 }
 function getEmotesForInitializer(tokenId, emote) {
     if(tokenId == -1) {
@@ -77,6 +77,9 @@ function getInitializerTrait(initializer, trait) {
 }
 
 async function drawEmote(context, initializer, emote, caption, blankImage, scale) {
+    if(!initializer || !initializerMetadata[initializer]) {
+        return;
+    }
     const img = await Canvas.loadImage(initializerMetadata[initializer][0].imageData);    
     const initializerColor = colorLookup(getInitializerTrait(initializer, "Color"));
     const initializerBackground = getInitializerTrait(initializer, "Background");
@@ -92,7 +95,7 @@ async function drawEmote(context, initializer, emote, caption, blankImage, scale
     context.fillText(caption, 320, 475 )
     if(Object.keys(emoteImages).indexOf(emote) >= 0) {
         const emoteImg = await Canvas.loadImage(`public/${generateEmoteImage(emote)}`);
-        context.drawImage(emoteImg, 630, 50, 150, 150);
+        context.drawImage(emoteImg, 630, 40, 150, 150);
     } else {
         context.textAlign = 'center'
         context.fillStyle = 'black'        

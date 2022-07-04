@@ -9,7 +9,10 @@ const profile = async (
     if (req.method === 'GET') {
         //const token = req.headers['authorization']  
         //const { address, body } = await Web3Token.verify(token);
-        
+        res.setHeader(
+            'Cache-Control',
+            'public, s-maxage=10, stale-while-revalidate=59'
+        )
         let dbConnection = await dbUtils.SSHConnection;
         let query = `SELECT *  FROM \`blankbot\`.\`nft_token_metadata\` where \`nft_contract\`='${contract}' and \`nft_token_id\`=${tokenId}`;
         console.log(query);
