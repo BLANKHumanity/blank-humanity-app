@@ -131,8 +131,7 @@ export default function BlanketSearch(props) {
 
   function handleBlanketResponse(
     nftID,
-    //collectionName,
-    collectionAddress,
+    collectionData,
     imageData,
     similarWeb3Assets
   ) {
@@ -146,7 +145,7 @@ export default function BlanketSearch(props) {
         }
       }).then(res => res.json())
       .then(profile => {
-        let name = "Initializer #"+nftID;
+        let name = collectionData.name + " #" + nftID;
         let phrase = "This is "+name;
         let notes = "No notes.";
         
@@ -158,7 +157,7 @@ export default function BlanketSearch(props) {
         setContentComponent(<div>
           <NftDetailBox
             id={nftID}
-            collectionData={collectionData.collectionData}
+            collectionData={collectionData}
             imageData={imageData}
             name={name}
             phrase={phrase}
