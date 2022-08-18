@@ -1,7 +1,6 @@
 import React from "react"
 import { useRouter } from 'next/router'
 import ContentSection from "../../../common/ContentSection/ContentSection";
-import InnerSection from "../../../common/InnerSection/InnerSection";
 import { useWalletDataContext } from "../../../../state/WalletContext";
 import SignMessageButton from "../../../common/SignMessageButton/SignMessageButton";
 import Footer from "../../../common/Footer/Footer";
@@ -9,7 +8,7 @@ import Footer from "../../../common/Footer/Footer";
 export default function Verify(props) {
     const router = useRouter()
     let { discord_id, salt } = router.query
-    const {walletData, connectWallet, setWalletData} = useWalletDataContext();
+    const {walletData, connectWallet} = useWalletDataContext();
 
     let message = `Hi, to connect your Ethereum Address to this Discord Account ${discord_id} on the Blank Humanity Server, please sign this random message: ${salt}`
     return (  
