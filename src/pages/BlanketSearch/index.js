@@ -29,11 +29,10 @@ function TitleArea(props) {
         alignItems: "center",
       }}
     >
-      <div style={{ width: "50%", textAlign: "left" }}>
-        <span style={{ fontFamily: "Bungee" }}>Blanket Search</span>
-        <br />
-        Drag an Initializer NFT here to interact with it!
-        <br />
+      <div style={{ width: "100%", textAlign: "left" }}>
+        <div style={{ fontFamily: "Bungee" }}>Blanket Search</div>
+        Drag an NFT here to identify it!
+        <div style={{marginTop:"1rem"}}>Currently supported collections: Initializers, Doodles, BAYC, Cryptopunks, and Goblintown.</div>
       </div>
       <div
         style={{

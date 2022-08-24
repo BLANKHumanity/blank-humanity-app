@@ -2,7 +2,8 @@ import * as tf from '@tensorflow/tfjs';
 
 
 
-import initiailizersMetadata from "../../../initializers-metadata-lookup.json";
+import initializersMetadata from "../../../initializers-metadata-lookup.json";
+import doodlesMetadata from "../../../doodles-official-metadata-lookup.json";
 
 
 const logInputData = (input) => {
@@ -403,22 +404,25 @@ const reverseImage = (callback) => {
         //alert(model.name+": "+nftID+" - "+confidence);
   
         const foundNftId = nftResults[0].className;
-        // const foundNftImageData = initiailizersMetadata[foundNftId][0].imageData;
-  
+        let foundNftImageData = false;
+        if(model.name === "Doodles") {
+          foundNftImageData = doodlesMetadata[foundNftId][0].imageData;
+        }
         const similarImages = [];
         if (model.name === "Initializers") {
+          foundNftImageData = initializersMetadata[foundNftId][0].imageData
           nftResults.forEach((result) => {
             const nftId = result.className;
             similarImages.push({
               id: nftId, 
-              imageData: initiailizersMetadata[nftId][0].imageData
+              imageData: initializersMetadata[nftId][0].imageData
             });
           });
         }
 
         
         // nftID, collectionDataObject, image, similarImages(only works for Initializers currently)
-        callback(foundNftId, model, imageData, similarImages);
+        callback(foundNftId, model, foundNftImageData || imageData, similarImages);
       }
       image.src = imageData;
     };
