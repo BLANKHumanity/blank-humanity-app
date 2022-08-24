@@ -71,7 +71,7 @@ function SimilarNFTsArea({ similarNFTs }) {
       >
         {similarNFTs.slice(1, 4).map((entry) => {
           return (
-            <div>
+            <div key={entry.id}>
               <span style={{fontSize:"1rem"}}>Initializer #{entry.id}</span>
               <br />
               <img
@@ -136,9 +136,9 @@ export default function BlanketSearch(props) {
     similarWeb3Assets
   ) {
     if (nftID) {
-      const collectionData = nftCollectionData[collectionAddress];            
-      console.log(`fetching profile from /api/nft/${collectionAddress}/${nftID}/profile`)
-      fetch(`/api/nft/${collectionAddress}/${nftID}/profile`, {
+      console.log(`collectionData: ${collectionData}`);
+      console.log(`fetching profile from /api/nft/${collectionData.address}/${nftID}/profile`)
+      fetch(`/api/nft/${collectionData.address}/${nftID}/profile`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'                          
@@ -163,7 +163,7 @@ export default function BlanketSearch(props) {
             phrase={phrase}
             notes={notes}
           />
-          <NFTProfileUpdateSection contractId={collectionAddress} tokenId={nftID}/></div>
+          <NFTProfileUpdateSection contractId={collectionData.address} tokenId={nftID}/></div>
         );                
       });
       setSimilarImagesComponent(

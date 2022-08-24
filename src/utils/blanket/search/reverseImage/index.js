@@ -403,7 +403,7 @@ const reverseImage = (callback) => {
         //alert(model.name+": "+nftID+" - "+confidence);
   
         const foundNftId = nftResults[0].className;
-        const foundNftImageData = initiailizersMetadata[foundNftId][0].imageData;
+        // const foundNftImageData = initiailizersMetadata[foundNftId][0].imageData;
   
         const similarImages = [];
         if (model.name === "Initializers") {
