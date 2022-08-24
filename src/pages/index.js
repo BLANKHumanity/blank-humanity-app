@@ -45,6 +45,7 @@ export default function Home(props) {
 
   return (
     <div>
+      <WalletDataProvider>
       <ReactModal
         isOpen={modalIsOpen}
         onRequestOpen={openModal}
@@ -72,6 +73,7 @@ export default function Home(props) {
         ""
       )}
       <Footer />
+      </WalletDataProvider>
     </div>
   );
 }

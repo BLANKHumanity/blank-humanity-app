@@ -2,7 +2,7 @@ import '../styles.css'
 import { WalletDataProvider } from "../state/WalletContext.js";
 
 function MyApp({ Component, pageProps }) {
-    return (<WalletDataProvider><div className="App"><Component {...pageProps} /></div></WalletDataProvider>)
+    return (<div className="App"><Component {...pageProps} /></div>)
   }
   
   // Only uncomment this method if you have blocking data requirements for
