@@ -4,6 +4,9 @@ import * as tf from '@tensorflow/tfjs';
 
 import initializersMetadata from "../../../initializers-metadata-lookup.json";
 import doodlesMetadata from "../../../doodles-official-metadata-lookup.json";
+import baycMetadata from "../../../boredapeyachtclub-metadata-lookup.json";
+import cryptopunksMetadata from "../../../cryptopunks-metadata-lookup.json";
+import goblintownMetadata from "../../../goblintownwtf-metadata-lookup.json";
 
 
 const logInputData = (input) => {
@@ -407,6 +410,12 @@ const reverseImage = (callback) => {
         let foundNftImageData = false;
         if(model.name === "Doodles") {
           foundNftImageData = doodlesMetadata[foundNftId][0].imageData;
+        } else if(model.name === "BAYC") {
+          foundNftImageData = baycMetadata[foundNftId][0].imageData;
+        } else if(model.name === "Cryptopunks") {
+          foundNftImageData = cryptopunksMetadata[foundNftId][0].imageData;
+        } else if(model.name === "Goblintown.wtf") {
+          foundNftImageData = goblintownMetadata[foundNftId][0].imageData;
         }
         const similarImages = [];
         if (model.name === "Initializers") {
