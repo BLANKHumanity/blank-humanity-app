@@ -2,7 +2,7 @@ import React from "react";
 import ReactModal from "react-modal";
 
 import { useWalletDataContext } from "../state/WalletContext";
-
+import { WalletDataProvider } from "../state/WalletContext.js";
 import WalletConnector from "../components/common/WalletConnector/WalletConnector.js";
 import Footer from "../components/common/Footer/Footer.js";
 
@@ -45,6 +45,7 @@ export default function Home(props) {
 
   return (
     <div>
+      <WalletDataProvider>
       <ReactModal
         isOpen={modalIsOpen}
         onRequestOpen={openModal}
@@ -72,6 +73,7 @@ export default function Home(props) {
         ""
       )}
       <Footer />
+      </WalletDataProvider>
     </div>
   );
 }

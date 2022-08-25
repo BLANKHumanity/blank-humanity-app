@@ -6,6 +6,7 @@ import { useWalletDataContext } from "../../../state/WalletContext";
 import SignMessageButton from "../../common/SignMessageButton/SignMessageButton";
 
 export default function NFTProfileUpdateSection(props) {
+    console.log(`props: ${JSON.stringify(props)}`);
     const router = useRouter()
     let { discord_id, salt } = router.query
     const {walletData, connectWallet, setWalletData} = useWalletDataContext();

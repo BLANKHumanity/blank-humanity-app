@@ -1,5 +1,7 @@
 import { registerFont, createCanvas } from 'canvas'
 import emoteUtils from "../../../../../../utils/emoteUtils";
+import dbUtils from "../../../../../../utils/dbUtils";
+
 
 const createEmote = async (
   req,
@@ -15,7 +17,7 @@ const createEmote = async (
     case "lg": scale = 1; break;
     case "large": scale = 1; break;
   }
-  if ( !emoteUtils.validEmoteForToken(tokenId, emote) ) { res.status(402); res.send(); return; }
+  let name = await dbUtils.getName("0x881D9c2F229323aad28a9c9045111e30e1F1eB25", tokenId);
 
   registerFont('public/Bungee-Regular.ttf', { family: 'Bungee' });
   registerFont('public/FiraCode-Regular.ttf', { family: 'Fira Code' });
@@ -27,7 +29,7 @@ const createEmote = async (
   const canvas = createCanvas(WIDTH, HEIGHT);
   const context = canvas.getContext("2d");
   
-  await emoteUtils.drawEmote(context, tokenId, emote, emoteUtils.generateCaption(tokenId, emote), 'public/BLANK.png', scale)
+  await emoteUtils.drawEmote(context, tokenId, emote, emoteUtils.generateCaption(name, emote), 'public/BLANK.png', scale)
 
   const buffer = canvas.toBuffer();
 

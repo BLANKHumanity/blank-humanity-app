@@ -71,7 +71,7 @@ export default function NftDetailBox({
                 <a
                   href={
                     "https://opensea.io/assets/" +
-                    collectionData.contract +
+                    collectionData.address +
                     "/" +
                     id
                   }

@@ -29,11 +29,10 @@ function TitleArea(props) {
         alignItems: "center",
       }}
     >
-      <div style={{ width: "50%", textAlign: "left" }}>
-        <span style={{ fontFamily: "Bungee" }}>Blanket Search</span>
-        <br />
-        Drag an Initializer NFT here to interact with it!
-        <br />
+      <div style={{ width: "100%", textAlign: "left" }}>
+        <div style={{ fontFamily: "Bungee" }}>Blanket Search</div>
+        Drag an NFT here to identify it!
+        <div style={{marginTop:"1rem"}}>Currently supported collections: Initializers, Doodles, BAYC, Cryptopunks, and Goblintown.</div>
       </div>
       <div
         style={{
@@ -71,7 +70,7 @@ function SimilarNFTsArea({ similarNFTs }) {
       >
         {similarNFTs.slice(1, 4).map((entry) => {
           return (
-            <div>
+            <div key={entry.id}>
               <span style={{fontSize:"1rem"}}>Initializer #{entry.id}</span>
               <br />
               <img
@@ -131,40 +130,39 @@ export default function BlanketSearch(props) {
 
   function handleBlanketResponse(
     nftID,
-    //collectionName,
-    collectionAddress,
+    collectionData,
     imageData,
     similarWeb3Assets
   ) {
     if (nftID) {
-      const collectionData = nftCollectionData[collectionAddress];            
-      console.log(`fetching profile from /api/nft/${collectionAddress}/${nftID}/profile`)
-      fetch(`/api/nft/${collectionAddress}/${nftID}/profile`, {
+      console.log(`collectionData: ${collectionData}`);
+      console.log(`fetching profile from /api/nft/${collectionData.address}/${nftID}/profile`)
+      fetch(`/api/nft/${collectionData.address}/${nftID}/profile`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'                          
         }
       }).then(res => res.json())
       .then(profile => {
-        let name = "Initializer #"+nftID;
+        let name = collectionData.name + " #" + nftID;
         let phrase = "This is "+name;
         let notes = "No notes.";
         
         if(profile && profile.length) {          
-          name = profile[0].nft_token_name;
-          phrase = profile[0].nft_token_phrase;
-          notes = profile[0].nft_token_notes;
+          name = decodeURIComponent(profile[0].nft_token_name);
+          phrase = decodeURIComponent(profile[0].nft_token_phrase);
+          notes = decodeURIComponent(profile[0].nft_token_notes);
         }                    
         setContentComponent(<div>
           <NftDetailBox
             id={nftID}
-            collectionData={collectionData.collectionData}
+            collectionData={collectionData}
             imageData={imageData}
             name={name}
             phrase={phrase}
             notes={notes}
           />
-          <NFTProfileUpdateSection contractId={collectionAddress} tokenId={nftID}/></div>
+          <NFTProfileUpdateSection contractId={collectionData.address} tokenId={nftID}/></div>
         );                
       });
       setSimilarImagesComponent(
